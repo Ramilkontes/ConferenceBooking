@@ -19,10 +19,11 @@ public class Room {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    private String name;
+    private Time time;
     private int amountPeople;
     @Enumerated(EnumType.STRING)
     private RoomStatus status;
-    private Time time;
     @ManyToMany(mappedBy = "rooms")
     private List<User> users = new ArrayList<>();
 
