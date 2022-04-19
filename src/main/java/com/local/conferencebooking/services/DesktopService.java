@@ -6,7 +6,7 @@ import com.local.conferencebooking.models.User;
 import java.util.List;
 
 public interface DesktopService {
-    List<User> getAllPeople();
+    /*List<User> getAllPeople();
 
-    List<Room> gerAllRooms();
+    List<Room> gerAllRooms();*/
 }

@@ -17,7 +17,7 @@ public class DesktopController {
     @Autowired
     private DesktopService service;
 
-    @GetMapping
+    /*@GetMapping
     public List<User> getAllPeople (){
         return service.getAllPeople();
     }
@@ -25,6 +25,6 @@ public class DesktopController {
     @GetMapping
     public List<Room> getAllRooms(){
         return service.gerAllRooms();
-    }
+    }*/
 
 }
