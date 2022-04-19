@@ -14,6 +14,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@Table(name = "users")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -26,6 +27,9 @@ public class User {
     private Role role;
     @Enumerated(EnumType.STRING)
     private State state;
-    @ManyToMany(mappedBy = "users")
+    @ManyToMany
+    @JoinTable(name = "users_rooms",
+            joinColumns = @JoinColumn(name = "users_id"),
+    inverseJoinColumns = @JoinColumn(name = "rooms_id"))
     private List<Room> rooms = new ArrayList<>();
 }

@@ -17,7 +17,7 @@ public class DesktopServiceImpl implements DesktopService {
     @Autowired
     private DesktopRepositories repositories;
 
-    @Override
+    /*@Override
     public List<User> getAllPeople() {
         return repositories.findAll().stream()
                 .map(Desktop::getUsers)
@@ -29,7 +29,7 @@ public class DesktopServiceImpl implements DesktopService {
         return repositories.findAll().stream()
                 .map(Desktop::getRooms)
                 .findAny().orElseThrow(RoomsNotFoundException::new);
-    }
+    }*/
 
 
 }
