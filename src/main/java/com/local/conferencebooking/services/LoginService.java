@@ -1,7 +1,8 @@
 package com.local.conferencebooking.services;
 
 import com.local.conferencebooking.forms.LoginForm;
+import com.local.conferencebooking.transfer.TokenDto;
 
 public interface LoginService {
-    Object login(LoginForm form);
+    TokenDto login(LoginForm form);
 }

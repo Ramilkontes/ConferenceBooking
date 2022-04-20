@@ -1,7 +1,9 @@
 package com.local.conferencebooking.controllers;
 
 import com.local.conferencebooking.forms.LoginForm;
+import com.local.conferencebooking.models.Token;
 import com.local.conferencebooking.services.LoginService;
+import com.local.conferencebooking.transfer.TokenDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,7 +19,7 @@ public class LoginController {
     private LoginService service;
 
     @PostMapping
-    public ResponseEntity<Object> login (@RequestBody LoginForm form){
+    public ResponseEntity<TokenDto> login (@RequestBody LoginForm form){
 
         return ResponseEntity.ok(service.login(form));
     }

@@ -32,4 +32,7 @@ public class User {
             joinColumns = @JoinColumn(name = "users_id"),
     inverseJoinColumns = @JoinColumn(name = "rooms_id"))
     private List<Room> rooms = new ArrayList<>();
+
+    @OneToMany(mappedBy = "user")
+    private List<Token> tokens = new ArrayList<>();
 }

@@ -4,15 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a508b0e2-943b-40a2-ac04-9c7e1e9ad9db" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/conferencebooking/controllers/DesktopController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/conferencebooking/controllers/DesktopController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/conferencebooking/models/Desktop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/conferencebooking/models/Desktop.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/conferencebooking/models/Room.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/conferencebooking/models/Room.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/conferencebooking/models/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/conferencebooking/models/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/conferencebooking/services/DesktopService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/conferencebooking/services/DesktopService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/conferencebooking/services/DesktopServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/conferencebooking/services/DesktopServiceImpl.java" afterDir="false" />
-    </list>
+    <list default="true" id="a508b0e2-943b-40a2-ac04-9c7e1e9ad9db" name="Default Changelist" comment="added mutual setting for authentication. Also fixed type DesktopController &amp; this service" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -22,6 +14,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Enum" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -55,6 +48,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.local.conferencebooking.transfer" />
       <recent name="com.local.conferencebooking.models" />
     </key>
   </component>
@@ -81,12 +75,34 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="b99d7470-b57d-4252-bcb4-4785492c8c5e" name="Default Changelist" comment="" />
+      <changelist id="a508b0e2-943b-40a2-ac04-9c7e1e9ad9db" name="Default Changelist" comment="fixed creating all tables, added difficult key for desktop" />
       <created>1650269801229</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1650269801229</updated>
     </task>
+    <task id="LOCAL-00001" summary="fixed creating all tables, added difficult key for desktop">
+      <created>1650377032344</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1650377032345</updated>
+    </task>
+    <task id="LOCAL-00002" summary="fixed creating all tables, added difficult key for desktop">
+      <created>1650377058716</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1650377058716</updated>
+    </task>
+    <task id="LOCAL-00003" summary="added mutual setting for authentication. Also fixed type DesktopController &amp; this service">
+      <created>1650459672350</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1650459672350</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -103,6 +119,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Created entity" />
-    <option name="LAST_COMMIT_MESSAGE" value="Created entity" />
+    <MESSAGE value="fixed creating all tables, added difficult key for desktop" />
+    <MESSAGE value="added mutual setting for authentication. Also fixed type DesktopController &amp; this service" />
+    <option name="LAST_COMMIT_MESSAGE" value="added mutual setting for authentication. Also fixed type DesktopController &amp; this service" />
   </component>
 </project>
