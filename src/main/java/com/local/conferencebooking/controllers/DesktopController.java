@@ -1,6 +1,8 @@
 package com.local.conferencebooking.controllers;
 
 import com.local.conferencebooking.services.DesktopService;
+import com.local.conferencebooking.transfer.AdminRoomsDto;
+import com.local.conferencebooking.transfer.AdminUsersDto;
 import com.local.conferencebooking.transfer.RoomDto;
 import com.local.conferencebooking.transfer.UserDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,12 +22,12 @@ public class DesktopController {
     private DesktopService service;
 
     @GetMapping("/people")
-    public List<UserDto> getAllPeople() {
+    public List<AdminUsersDto> getAllPeople() {
         return service.getAllPeople();
     }
 
     @GetMapping("/rooms")
-    public List<RoomDto> getAllRooms() {
+    public List<AdminRoomsDto> getAllRooms() {
         return service.gerAllRooms();
     }
 

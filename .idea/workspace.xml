@@ -4,7 +4,26 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a508b0e2-943b-40a2-ac04-9c7e1e9ad9db" name="Default Changelist" comment="added mutual setting for authentication. Also fixed type DesktopController &amp; this service" />
+    <list default="true" id="c6e66d34-137b-44e8-979e-756b0cee06aa" name="Default Changelist" comment="authentication with header done, fixed methods for admin">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/local/conferencebooking/transfer/AdminRoomsDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/conferencebooking/controllers/DesktopController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/conferencebooking/controllers/DesktopController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/conferencebooking/controllers/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/conferencebooking/controllers/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/conferencebooking/controllers/RoomController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/conferencebooking/controllers/RoomController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/conferencebooking/controllers/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/conferencebooking/controllers/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/conferencebooking/forms/RoomForms.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/conferencebooking/forms/RoomForm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/conferencebooking/models/Room.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/conferencebooking/models/Room.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/conferencebooking/repositories/RoomRepositories.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/conferencebooking/repositories/RoomRepositories.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/conferencebooking/security/config/WebSecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/conferencebooking/security/config/WebSecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/conferencebooking/services/DesktopService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/conferencebooking/services/DesktopService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/conferencebooking/services/DesktopServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/conferencebooking/services/DesktopServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/conferencebooking/services/RoomService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/conferencebooking/services/RoomService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/conferencebooking/services/RoomServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/conferencebooking/services/RoomServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/conferencebooking/services/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/conferencebooking/services/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/conferencebooking/services/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/conferencebooking/services/UserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/conferencebooking/transfer/AdminDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/conferencebooking/transfer/AdminUsersDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/conferencebooking/transfer/RoomDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/conferencebooking/transfer/RoomDto.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -42,13 +61,15 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="D:/Users/Арти/IdeaProjects/income-distributor" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
   </component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
-      <recent name="com.local.conferencebooking.transfer" />
+      <recent name="com.local.conferencebooking.repositories" />
+      <recent name="com.local.conferencebooking.services" />
       <recent name="com.local.conferencebooking.models" />
     </key>
   </component>
@@ -75,32 +96,32 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="a508b0e2-943b-40a2-ac04-9c7e1e9ad9db" name="Default Changelist" comment="fixed creating all tables, added difficult key for desktop" />
+      <changelist id="c6e66d34-137b-44e8-979e-756b0cee06aa" name="Default Changelist" comment="authentication with header done, fixed methods for admin" />
       <created>1650269801229</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1650269801229</updated>
     </task>
-    <task id="LOCAL-00001" summary="fixed creating all tables, added difficult key for desktop">
-      <created>1650377032344</created>
+    <task id="LOCAL-00001" summary="Created entity">
+      <created>1650280661004</created>
       <option name="number" value="00001" />
       <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
-      <updated>1650377032345</updated>
+      <updated>1650280661004</updated>
     </task>
-    <task id="LOCAL-00002" summary="fixed creating all tables, added difficult key for desktop">
-      <created>1650377058716</created>
+    <task id="LOCAL-00002" summary="Created controllers(without LoginController), added service and repositories">
+      <created>1650292718933</created>
       <option name="number" value="00002" />
       <option name="presentableId" value="LOCAL-00002" />
       <option name="project" value="LOCAL" />
-      <updated>1650377058716</updated>
+      <updated>1650292718933</updated>
     </task>
-    <task id="LOCAL-00003" summary="added mutual setting for authentication. Also fixed type DesktopController &amp; this service">
-      <created>1650459672350</created>
+    <task id="LOCAL-00003" summary="authentication with header done, fixed methods for admin">
+      <created>1650549957215</created>
       <option name="number" value="00003" />
       <option name="presentableId" value="LOCAL-00003" />
       <option name="project" value="LOCAL" />
-      <updated>1650459672350</updated>
+      <updated>1650549957215</updated>
     </task>
     <option name="localTasksCounter" value="4" />
     <servers />
@@ -119,8 +140,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Created entity" />
-    <MESSAGE value="fixed creating all tables, added difficult key for desktop" />
-    <MESSAGE value="added mutual setting for authentication. Also fixed type DesktopController &amp; this service" />
-    <option name="LAST_COMMIT_MESSAGE" value="added mutual setting for authentication. Also fixed type DesktopController &amp; this service" />
+    <MESSAGE value="Created controllers(without LoginController), added service and repositories" />
+    <MESSAGE value="authentication with header done, fixed methods for admin" />
+    <option name="LAST_COMMIT_MESSAGE" value="authentication with header done, fixed methods for admin" />
   </component>
 </project>

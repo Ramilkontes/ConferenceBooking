@@ -1,34 +1,44 @@
 package com.local.conferencebooking.services;
 
-import com.local.conferencebooking.exceptions.RoomsNotFoundException;
-import com.local.conferencebooking.exceptions.UsersNotFountException;
-import com.local.conferencebooking.models.Desktop;
-import com.local.conferencebooking.models.Room;
-import com.local.conferencebooking.models.User;
-import com.local.conferencebooking.repositories.DesktopRepositories;
+import com.local.conferencebooking.repositories.RoomRepositories;
+import com.local.conferencebooking.repositories.UserRepositories;
+import com.local.conferencebooking.transfer.AdminRoomsDto;
+import com.local.conferencebooking.transfer.AdminUsersDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.List;
+
+import static com.local.conferencebooking.transfer.AdminUsersDto.*;
+import static com.local.conferencebooking.transfer.AdminRoomsDto.*;
 
 @Service
 public class DesktopServiceImpl implements DesktopService {
 
     @Autowired
-    private DesktopRepositories repositories;
+    private UserRepositories userRepositories;
+
+    @Autowired
+    private RoomRepositories roomRepositories;
 
     @Override
-    public List<User> getAllPeople() {
-        return repositories.findAll().stream()
-                .map(Desktop::getUsers)
-                .findAny().orElseThrow(UsersNotFountException::new);
+    public List<AdminUsersDto> getAllPeople() {
+        return from(userRepositories.findAll());
     }
 
     @Override
-    public List<Room> gerAllRooms() {
-        return repositories.findAll().stream()
-                .map(Desktop::getRooms)
-                .findAny().orElseThrow(RoomsNotFoundException::new);
+    public List<AdminRoomsDto> gerAllRooms() {
+        return from(roomRepositories.findAll());
+    }
+
+    @Override
+    public LocalDate getTime(Date date) {
+        return date.toInstant()
+                .atZone(ZoneId.systemDefault())
+                .toLocalDate();
     }
 
 

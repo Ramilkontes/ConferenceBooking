@@ -1,6 +1,7 @@
 package com.local.conferencebooking.transfer;
 
 import com.local.conferencebooking.models.Room;
+import com.local.conferencebooking.models.RoomStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -11,26 +12,28 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Builder
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
-public class RoomDto {
+public class AdminRoomsDto {
     private Long id;
     private String name;
-    private int amountPeople;
     private Date date;
+    private int amountPeople;
+    private RoomStatus status;
 
-    public static RoomDto from(Room room) {
-        return RoomDto.builder()
+    public static AdminRoomsDto from(Room room) {
+        return AdminRoomsDto.builder()
                 .id(room.getId())
                 .name(room.getName())
-                .amountPeople(room.getUsers().size())
                 .date(room.getDate())
+                .amountPeople(room.getAmountPeople())
+                .status(room.getStatus())
                 .build();
     }
 
-    public static List<RoomDto> from(List<Room> rooms) {
-        return rooms.stream().map(RoomDto::from).collect(Collectors.toList());
+    public static List<AdminRoomsDto> from(List<Room> rooms) {
+        return rooms.stream().map(AdminRoomsDto::from).collect(Collectors.toList());
     }
 }

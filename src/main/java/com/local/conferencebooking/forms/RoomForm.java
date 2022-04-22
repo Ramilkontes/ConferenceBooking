@@ -2,10 +2,10 @@ package com.local.conferencebooking.forms;
 
 import lombok.Data;
 
-import java.sql.Time;
+import java.util.Date;
 
 @Data
-public class RoomForms {
+public class RoomForm {
     private String name;
-    private Time time;
+    private Date date;
 }

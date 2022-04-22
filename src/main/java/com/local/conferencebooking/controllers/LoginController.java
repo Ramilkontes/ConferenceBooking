@@ -20,7 +20,6 @@ public class LoginController {
 
     @PostMapping
     public ResponseEntity<TokenDto> login (@RequestBody LoginForm form){
-
         return ResponseEntity.ok(service.login(form));
     }
 

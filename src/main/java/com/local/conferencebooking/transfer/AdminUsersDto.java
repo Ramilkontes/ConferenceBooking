@@ -1,5 +1,6 @@
 package com.local.conferencebooking.transfer;
 
+import com.local.conferencebooking.models.Room;
 import com.local.conferencebooking.models.State;
 import com.local.conferencebooking.models.User;
 import lombok.AllArgsConstructor;
@@ -14,15 +15,15 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class AdminDto {
+public class AdminUsersDto {
     private Long id;
     private String login;
     private String firsName;
     private String lastName;
     private State state;
 
-    public static AdminDto from(User user) {
-        return AdminDto.builder()
+    public static AdminUsersDto from(User user) {
+        return AdminUsersDto.builder()
                 .id(user.getId())
                 .login(user.getLogin())
                 .firsName(user.getFirsName())
@@ -31,10 +32,8 @@ public class AdminDto {
                 .build();
     }
 
-    public static List<AdminDto> from(List<User> users) {
-        return users.stream().map(AdminDto::from).collect(Collectors.toList());
+    public static List<AdminUsersDto> from(List<User> users) {
+        return users.stream().map(AdminUsersDto::from).collect(Collectors.toList());
     }
-
-    // TODO: сделать метод для админа с комнатами
 }
 

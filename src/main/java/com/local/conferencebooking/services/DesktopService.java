@@ -1,16 +1,16 @@
 package com.local.conferencebooking.services;
 
-import com.local.conferencebooking.transfer.RoomDto;
-import com.local.conferencebooking.transfer.UserDto;
+import com.local.conferencebooking.transfer.AdminRoomsDto;
+import com.local.conferencebooking.transfer.AdminUsersDto;
 
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
 public interface DesktopService {
-    List<UserDto> getAllPeople();
+    List<AdminUsersDto> getAllPeople();
 
-    List<RoomDto> gerAllRooms();
+    List<AdminRoomsDto> gerAllRooms();
 
     LocalDate getTime(Date date);
 }
