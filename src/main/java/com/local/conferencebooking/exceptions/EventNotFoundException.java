@@ -3,8 +3,8 @@ package com.local.conferencebooking.exceptions;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
-public class RoomsNotFoundException extends RuntimeException{
-    public RoomsNotFoundException(String msg) {
+public class EventNotFoundException extends RuntimeException{
+    public EventNotFoundException(String msg) {
         super(msg);
     }
 }

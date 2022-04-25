@@ -1,28 +1,26 @@
 package com.local.conferencebooking.services;
 
-import com.local.conferencebooking.repositories.RoomRepositories;
+import com.local.conferencebooking.repositories.EventRepositories;
 import com.local.conferencebooking.repositories.UserRepositories;
-import com.local.conferencebooking.transfer.AdminRoomsDto;
+import com.local.conferencebooking.transfer.AdminEventsDto;
 import com.local.conferencebooking.transfer.AdminUsersDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.time.ZoneId;
-import java.util.Date;
 import java.util.List;
 
 import static com.local.conferencebooking.transfer.AdminUsersDto.*;
-import static com.local.conferencebooking.transfer.AdminRoomsDto.*;
+import static com.local.conferencebooking.transfer.AdminEventsDto.*;
 
 @Service
-public class DesktopServiceImpl implements DesktopService {
+public class MeetRoomServiceImpl implements MeetRoomService {
 
     @Autowired
     private UserRepositories userRepositories;
 
     @Autowired
-    private RoomRepositories roomRepositories;
+    private EventRepositories eventRepositories;
 
     @Override
     public List<AdminUsersDto> getAllPeople() {
@@ -30,16 +28,12 @@ public class DesktopServiceImpl implements DesktopService {
     }
 
     @Override
-    public List<AdminRoomsDto> gerAllRooms() {
-        return from(roomRepositories.findAll());
+    public List<AdminEventsDto> gerAllRooms() {
+        return from(eventRepositories.findAll());
     }
 
     @Override
-    public LocalDate getTime(Date date) {
-        return date.toInstant()
-                .atZone(ZoneId.systemDefault())
-                .toLocalDate();
+    public LocalDate getTime() {
+        return LocalDate.now();
     }
-
-
 }

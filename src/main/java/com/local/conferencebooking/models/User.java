@@ -30,8 +30,8 @@ public class User {
     @ManyToMany
     @JoinTable(name = "users_rooms",
             joinColumns = @JoinColumn(name = "users_id"),
-    inverseJoinColumns = @JoinColumn(name = "rooms_id"))
-    private List<Room> rooms = new ArrayList<>();
+    inverseJoinColumns = @JoinColumn(name = "events_id"))
+    private List<Event> events = new ArrayList<>();
 
     @OneToMany(mappedBy = "user")
     private List<Token> tokens = new ArrayList<>();

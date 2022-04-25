@@ -1,5 +1,5 @@
 package com.local.conferencebooking.models;
 
-public enum RoomStatus {
+public enum EventStatus {
     ACTIVE, INACTIVE, CLOSED;
 }

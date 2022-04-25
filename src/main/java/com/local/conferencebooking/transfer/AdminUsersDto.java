@@ -1,6 +1,5 @@
 package com.local.conferencebooking.transfer;
 
-import com.local.conferencebooking.models.Room;
 import com.local.conferencebooking.models.State;
 import com.local.conferencebooking.models.User;
 import lombok.AllArgsConstructor;

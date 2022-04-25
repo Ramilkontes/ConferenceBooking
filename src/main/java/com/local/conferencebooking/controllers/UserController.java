@@ -1,13 +1,13 @@
 package com.local.conferencebooking.controllers;
 
+import com.local.conferencebooking.forms.EventFormToFindByDate;
+import com.local.conferencebooking.forms.EventFormToFindByName;
 import com.local.conferencebooking.forms.UserForm;
-import com.local.conferencebooking.models.Room;
 import com.local.conferencebooking.models.User;
 import com.local.conferencebooking.services.UserService;
 
 import static com.local.conferencebooking.transfer.UserDto.from;
 
-import com.local.conferencebooking.transfer.RoomDto;
 import com.local.conferencebooking.transfer.UserDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -43,8 +43,13 @@ public class UserController {
     }
 
     @PostMapping("/{id}")
-    public ResponseEntity<Object> joinToRoom(@PathVariable Long id, String name){
-        return service.joinToRoom(id, name);
+    public ResponseEntity<Object> joinToRoomByName(@PathVariable Long id, @RequestBody EventFormToFindByName form){
+        return service.joinToRoomByEventName(id, form.getName());
+    }
+
+    @PostMapping("/{id}")
+    public ResponseEntity<Object> joinToRoom(@PathVariable Long id, @RequestBody EventFormToFindByDate eventForm){
+        return service.joinToRoom(id, eventForm);
     }
 
 }

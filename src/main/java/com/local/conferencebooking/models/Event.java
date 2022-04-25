@@ -4,8 +4,11 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import net.bytebuddy.implementation.bind.annotation.Default;
+import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -15,17 +18,20 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Table(name = "rooms")
-public class Room {
+@Table(name = "events")
+public class Event {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @Column(name = "name", nullable = false, columnDefinition = "Event")
     private String name;
     @Temporal(TemporalType.TIMESTAMP)
-    private Date date;
+    private LocalDate dateStart;
+    @Temporal(TemporalType.TIMESTAMP)
+    private LocalDate dateFinish;
     private int amountPeople;
     @Enumerated(EnumType.STRING)
-    private RoomStatus status;
-    @ManyToMany(mappedBy = "rooms")
+    private EventStatus status;
+    @ManyToMany(mappedBy = "events")
     private List<User> users = new ArrayList<>();
 }

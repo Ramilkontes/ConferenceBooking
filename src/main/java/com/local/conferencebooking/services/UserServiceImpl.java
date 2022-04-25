@@ -1,19 +1,21 @@
 package com.local.conferencebooking.services;
 
-import com.local.conferencebooking.exceptions.RoomsNotFoundException;
+import com.local.conferencebooking.exceptions.EventNotFoundException;
+import com.local.conferencebooking.forms.EventFormToFindByDate;
 import com.local.conferencebooking.forms.UserForm;
-import com.local.conferencebooking.models.Room;
+import com.local.conferencebooking.models.Event;
+import com.local.conferencebooking.models.EventStatus;
 import com.local.conferencebooking.models.User;
-import com.local.conferencebooking.repositories.RoomRepositories;
+import com.local.conferencebooking.repositories.EventRepositories;
 import com.local.conferencebooking.repositories.UserRepositories;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.core.RepositoryInformation;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -25,7 +27,13 @@ public class UserServiceImpl implements UserService {
     private PasswordEncoder passwordEncoder;
 
     @Autowired
-    private RoomRepositories roomRepositories;
+    private EventRepositories eventRepositories;
+
+    @Autowired
+    private MeetRoomService roomService;
+
+    @Autowired
+    private EventService eventService;
 
     @Override
     public List<User> findAll() {
@@ -49,13 +57,59 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public ResponseEntity<Object> joinToRoom(Long id, String name) {
+    public ResponseEntity<Object> joinToRoomByEventName(Long id, String name) {
         User user = repositories.getById(id);
-        Room room = roomRepositories.findRoomByName(name).orElseThrow(RoomsNotFoundException::new);
-        room.getUsers().add(user);
-        roomRepositories.save(room);
-        user.getRooms().add(room);
-        repositories.save(user);
-        return ResponseEntity.ok().build();
+        Event event = eventRepositories.findRoomByName(name).orElseThrow(EventNotFoundException::new);
+        LocalDate fromForm = event.getDateStart();
+        LocalDate today = roomService.getTime();
+        if (fromForm.getDayOfYear() == today.getDayOfYear()) {
+            event.getUsers().add(user);
+            eventRepositories.save(event);
+            user.getEvents().add(event);
+            repositories.save(user);
+            return ResponseEntity.ok().build();
+        }
+        return getHttpStatus(fromForm, today, event);
+    }
+
+    @Override
+    public ResponseEntity<Object> joinToRoom(Long id, EventFormToFindByDate eventForm) throws IllegalArgumentException {
+        User user = repositories.getById(id);
+        LocalDate fromForm = eventForm.getDate();
+        LocalDate today = roomService.getTime();
+        Event event = eventService.checkingEvent(fromForm);
+        if (fromForm.getYear() == today.getYear()) {
+            if (fromForm.getDayOfYear() == today.getDayOfYear()) {
+                event.getUsers().add(user);
+                eventRepositories.save(event);
+                user.getEvents().add(event);
+                repositories.save(user);
+            } else if (fromForm.getDayOfYear() > today.getDayOfYear()) {
+                eventRepositories.save(event);
+            } else {
+                eventRepositories.save(event);
+            }
+            return getHttpStatus(fromForm, today, event);
+        }
+        throw new IllegalArgumentException("Joining to this event is not unable, please check entered date");
+    }
+
+    public ResponseEntity<Object> getHttpStatus(LocalDate date, LocalDate today, Event event) {
+        if (date.getYear() == today.getYear()) {
+            if (date.getDayOfYear() == today.getDayOfYear()) {
+                event.setStatus(EventStatus.ACTIVE);
+                return new ResponseEntity<>(HttpStatus.ACCEPTED);
+            } else if (date.getDayOfYear() > today.getDayOfYear()) {
+                event.setStatus(EventStatus.INACTIVE);
+                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            } else {
+                event.setStatus(EventStatus.CLOSED);
+                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            }
+        }
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 }
+//TODO: проверка на время бронирования 30 минут/24 часа
+
+//TODO: сделать админу метод для моментальной установки CLOSED для всех закончнных событий

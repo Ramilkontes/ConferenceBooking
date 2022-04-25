@@ -14,10 +14,10 @@ import java.util.Date;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Desktop {
+public class MeetRoom {
 
     @EmbeddedId
-    private ServiceClassForDesktop serviceClassForDesktop;
+    private ServiceClassForMeetRoom serviceClassForMeetRoom;
     @Temporal(TemporalType.DATE)
     private Date date;
 }

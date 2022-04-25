@@ -1,25 +1,22 @@
 package com.local.conferencebooking.controllers;
 
-import com.local.conferencebooking.services.DesktopService;
-import com.local.conferencebooking.transfer.AdminRoomsDto;
+import com.local.conferencebooking.services.MeetRoomService;
+import com.local.conferencebooking.transfer.AdminEventsDto;
 import com.local.conferencebooking.transfer.AdminUsersDto;
-import com.local.conferencebooking.transfer.RoomDto;
-import com.local.conferencebooking.transfer.UserDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 @RestController
-@RequestMapping("/desktop")
-public class DesktopController {
+@RequestMapping("/meet-room")
+public class MeetRoomController {
 
     @Autowired
-    private DesktopService service;
+    private MeetRoomService service;
 
     @GetMapping("/people")
     public List<AdminUsersDto> getAllPeople() {
@@ -27,12 +24,12 @@ public class DesktopController {
     }
 
     @GetMapping("/rooms")
-    public List<AdminRoomsDto> getAllRooms() {
+    public List<AdminEventsDto> getAllRooms() {
         return service.gerAllRooms();
     }
 
     @GetMapping
-    public LocalDate getTime (Date date){
-        return service.getTime(date);
+    public LocalDate getTimeToday() {
+        return service.getTime();
     }
 }

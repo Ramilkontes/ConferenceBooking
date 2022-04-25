@@ -13,7 +13,7 @@ import java.io.Serializable;
         @UniqueConstraint(columnNames = "users_id"),
         @UniqueConstraint(columnNames = "rooms_id")})
 @Data
-public class ServiceClassForDesktop implements Serializable {
+public class ServiceClassForMeetRoom implements Serializable {
     @Column(name = "users_id")
     private Long userId;
     @Column(name = "rooms_id")
