@@ -3,7 +3,7 @@ package com.local.conferencebooking.services;
 import com.local.conferencebooking.forms.EventFormToCreate;
 import com.local.conferencebooking.models.Event;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public interface EventService {
     Event getOne(Long id);
@@ -14,5 +14,5 @@ public interface EventService {
 
     Event deleteEvent(Long id);
 
-    Event checkingEvent(LocalDate date);
+    Event checkingEvent(LocalDateTime date);
 }

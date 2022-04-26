@@ -38,11 +38,7 @@ public class UserController {
         return new ResponseEntity<>(from(service.updateUser(id, updateForm)), HttpStatus.ACCEPTED);
     }
 
-    private User checkForExists(Long id) {
-        return service.findOne(id);
-    }
-
-    @PostMapping("/{id}")
+    @PostMapping("find/{id}")
     public ResponseEntity<Object> joinToRoomByName(@PathVariable Long id, @RequestBody EventFormToFindByName form){
         return service.joinToRoomByEventName(id, form.getName());
     }
@@ -50,6 +46,10 @@ public class UserController {
     @PostMapping("/{id}")
     public ResponseEntity<Object> joinToRoom(@PathVariable Long id, @RequestBody EventFormToFindByDate eventForm){
         return service.joinToRoom(id, eventForm);
+    }
+
+    private User checkForExists(Long id) {
+        return service.findOne(id);
     }
 
 }

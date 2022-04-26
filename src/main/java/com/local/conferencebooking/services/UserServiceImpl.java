@@ -15,6 +15,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -60,8 +61,8 @@ public class UserServiceImpl implements UserService {
     public ResponseEntity<Object> joinToRoomByEventName(Long id, String name) {
         User user = repositories.getById(id);
         Event event = eventRepositories.findRoomByName(name).orElseThrow(EventNotFoundException::new);
-        LocalDate fromForm = event.getDateStart();
-        LocalDate today = roomService.getTime();
+        LocalDateTime fromForm = event.getDateStart();
+        LocalDateTime today = roomService.getTime();
         if (fromForm.getDayOfYear() == today.getDayOfYear()) {
             event.getUsers().add(user);
             eventRepositories.save(event);
@@ -72,29 +73,29 @@ public class UserServiceImpl implements UserService {
         return getHttpStatus(fromForm, today, event);
     }
 
+    //TODO: прописать в контроллере HttpStatus и проверить его работу
+
     @Override
     public ResponseEntity<Object> joinToRoom(Long id, EventFormToFindByDate eventForm) throws IllegalArgumentException {
         User user = repositories.getById(id);
-        LocalDate fromForm = eventForm.getDate();
-        LocalDate today = roomService.getTime();
-        Event event = eventService.checkingEvent(fromForm);
+        LocalDate fromForm = eventForm.getDate().toLocalDate();
+        LocalDate today = roomService.getTime().toLocalDate();
+        Event event = eventService.checkingEvent(eventForm.getDate());
         if (fromForm.getYear() == today.getYear()) {
             if (fromForm.getDayOfYear() == today.getDayOfYear()) {
                 event.getUsers().add(user);
-                eventRepositories.save(event);
+                event.setAmountPeople(event.getUsers().size());
                 user.getEvents().add(event);
+                eventRepositories.save(event);
                 repositories.save(user);
-            } else if (fromForm.getDayOfYear() > today.getDayOfYear()) {
-                eventRepositories.save(event);
             } else {
-                eventRepositories.save(event);
+            throw new IllegalArgumentException("Joining to this event is not unable, please check entered date");
             }
-            return getHttpStatus(fromForm, today, event);
         }
-        throw new IllegalArgumentException("Joining to this event is not unable, please check entered date");
+        return getHttpStatus(eventForm.getDate(), roomService.getTime(), event);
     }
 
-    public ResponseEntity<Object> getHttpStatus(LocalDate date, LocalDate today, Event event) {
+    public ResponseEntity<Object> getHttpStatus(LocalDateTime date, LocalDateTime today, Event event) {
         if (date.getYear() == today.getYear()) {
             if (date.getDayOfYear() == today.getDayOfYear()) {
                 event.setStatus(EventStatus.ACTIVE);
@@ -110,6 +111,4 @@ public class UserServiceImpl implements UserService {
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 }
-//TODO: проверка на время бронирования 30 минут/24 часа
-
 //TODO: сделать админу метод для моментальной установки CLOSED для всех закончнных событий

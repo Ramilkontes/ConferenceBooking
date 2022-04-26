@@ -28,7 +28,7 @@ public class User {
     @Enumerated(EnumType.STRING)
     private State state;
     @ManyToMany
-    @JoinTable(name = "users_rooms",
+    @JoinTable(name = "users_events",
             joinColumns = @JoinColumn(name = "users_id"),
     inverseJoinColumns = @JoinColumn(name = "events_id"))
     private List<Event> events = new ArrayList<>();

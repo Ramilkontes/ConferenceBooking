@@ -16,14 +16,14 @@ import java.util.stream.Collectors;
 public class UserDto {
     private Long id;
     private String login;
-    private String firsName;
+    private String firstName;
     private String lastName;
 
     public static UserDto from (User user){
         return UserDto.builder()
                 .id(user.getId())
                 .login(user.getLogin())
-                .firsName(user.getFirsName())
+                .firstName(user.getFirsName())
                 .lastName(user.getLastName())
                 .build();
     }

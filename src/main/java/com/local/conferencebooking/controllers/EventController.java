@@ -30,7 +30,7 @@ public class EventController {
     }
 
     @PostMapping()
-    public ResponseEntity<EventDto> createRoom (@RequestBody EventFormToCreate eventFormToCreate){
+    public ResponseEntity<EventDto> createEvent(@RequestBody EventFormToCreate eventFormToCreate){
         service.createEvent(eventFormToCreate);
         return ResponseEntity.ok().build();
     }

@@ -7,7 +7,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -18,7 +18,8 @@ import java.util.stream.Collectors;
 public class AdminEventsDto {
     private Long id;
     private String name;
-    private Date date;
+    private LocalDateTime dateStart;
+    private LocalDateTime dateFinish;
     private int amountPeople;
     private EventStatus status;
 
@@ -26,7 +27,8 @@ public class AdminEventsDto {
         return AdminEventsDto.builder()
                 .id(event.getId())
                 .name(event.getName())
-                .date(event.getDate())
+                .dateStart(event.getDateStart())
+                .dateFinish(event.getDateFinish())
                 .amountPeople(event.getAmountPeople())
                 .status(event.getStatus())
                 .build();

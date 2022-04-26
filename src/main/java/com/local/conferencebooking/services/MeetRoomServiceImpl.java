@@ -7,7 +7,7 @@ import com.local.conferencebooking.transfer.AdminUsersDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import static com.local.conferencebooking.transfer.AdminUsersDto.*;
@@ -33,7 +33,7 @@ public class MeetRoomServiceImpl implements MeetRoomService {
     }
 
     @Override
-    public LocalDate getTime() {
-        return LocalDate.now();
+    public LocalDateTime getTime() {
+        return LocalDateTime.now();
     }
 }

@@ -9,13 +9,13 @@ import javax.persistence.UniqueConstraint;
 import java.io.Serializable;
 
 @Embeddable
-@Table(name = "users_rooms", uniqueConstraints = {
+@Table(name = "users_events", uniqueConstraints = {
         @UniqueConstraint(columnNames = "users_id"),
-        @UniqueConstraint(columnNames = "rooms_id")})
+        @UniqueConstraint(columnNames = "events_id")})
 @Data
 public class ServiceClassForMeetRoom implements Serializable {
     @Column(name = "users_id")
     private Long userId;
-    @Column(name = "rooms_id")
-    private Long roomId;
+    @Column(name = "events_id")
+    private Long eventId;
 }

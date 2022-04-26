@@ -30,47 +30,14 @@ public class EventServiceImpl implements EventService {
     @Override
     public void createEvent(EventFormToCreate eventFormToCreate) {
         Event event = getEvent(eventFormToCreate);
+        checkBookingToExist(event);
         long minutes = getMinutes(eventFormToCreate);
         if (minutes >= 30 && minutes <= 1440) {
-            getStatusEvent(event, roomService.getTime());
-            repositories.save(event);
-        }
-        throw new IllegalArgumentException("Booking is not possible, please check entered date:" +
-                "Minimum booking interval 30 minutes,\n" +
-                "maximum 24 hours");
-    }
-
-    //TODO: Написать фильтрацию для проверки дат существующих событий
-    /*private void checkBookingIsExist(Event event) {
-        List<Event> events = repositories.findAll();
-        if (event.getDateStart().isAfter(event.getDateFinish())) {
-
-            events.stream().filter(x->x.getDateStart())
-        }
-    }*/
-
-    private Event getEvent(EventFormToCreate eventFormToCreate) {
-        return Event.builder()
-                .name(eventFormToCreate.getName())
-                .dateStart(eventFormToCreate.getDateStart())
-                .dateFinish(eventFormToCreate.getDateFinish())
-                .amountPeople(1)
-                .status(EventStatus.INACTIVE)
-                .build();
-    }
-
-    private long getMinutes(EventFormToCreate eventFormToCreate) {
-        LocalDateTime start = eventFormToCreate.getDateStart().atStartOfDay();
-        LocalDateTime finish = eventFormToCreate.getDateFinish().atStartOfDay();
-        return ChronoUnit.MINUTES.between(start, finish);
-    }
-
-    private void getStatusEvent(Event event, LocalDate today) {
-        if (event.getDateStart().compareTo(today) == 0) {
-            event.setStatus(EventStatus.ACTIVE);
-        }
-        if (event.getDateStart().compareTo(today) > 0) {
-            event.setStatus(EventStatus.CLOSED);
+            repositories.save(getStatusEvent(event, roomService.getTime()));
+        } else {
+            throw new IllegalArgumentException("Booking is not possible, please check entered date:" +
+                    "Minimum booking interval 30 minutes,\n" +
+                    "maximum 24 hours");
         }
     }
 
@@ -90,8 +57,62 @@ public class EventServiceImpl implements EventService {
         return room.get();
     }
 
-    public Event checkingEvent(LocalDate date) {
-        return repositories.findByDateStart(date)
+    private void checkBookingToExist(Event event) {
+        List<Event> events = repositories.findAll();
+        LocalDateTime startNewEvent = event.getDateStart();
+        LocalDateTime finishNewEvent = event.getDateFinish();
+        if (events.stream().anyMatch(x -> x.getDateStart().isAfter(startNewEvent)
+                && x.getDateStart().isBefore(finishNewEvent))) {
+            throw new IllegalArgumentException("Booking is not possible, this time is engaged");
+        } else if (events.stream().anyMatch(x -> x.getDateFinish().isAfter(startNewEvent)
+                && x.getDateFinish().isBefore(finishNewEvent))) {
+            throw new IllegalArgumentException("Booking is not possible, this time is engaged");
+        } else if (events.stream().anyMatch(x -> x.getDateStart() == startNewEvent
+                || x.getDateFinish() == finishNewEvent)) {
+            throw new IllegalArgumentException("Booking is not possible, this time is engaged");
+        }
+    }
+
+    //TODO: написать првоерку на корректность введения формы даты для создания бронирования
+    //TODO: чтобы нельзя было создать событие в прошлом
+
+    private Event getEvent(EventFormToCreate eventFormToCreate) {
+        String name;
+        if(eventFormToCreate.getName()==null) {
+            name = "Event";
+        }
+        else {
+            name = eventFormToCreate.getName();
+        }
+        return Event.builder()
+                .name(name)
+                .dateStart(eventFormToCreate.getDateStart())
+                .dateFinish(eventFormToCreate.getDateFinish())
+                .amountPeople(1)
+                .status(EventStatus.INACTIVE)
+                .build();
+    }
+
+    private long getMinutes(EventFormToCreate eventFormToCreate) {
+        LocalDateTime start = eventFormToCreate.getDateStart();
+        LocalDateTime finish = eventFormToCreate.getDateFinish();
+        return ChronoUnit.MINUTES.between(start, finish);
+    }
+
+    private Event getStatusEvent(Event event, LocalDateTime today) {
+        LocalDate startDate = event.getDateStart().toLocalDate();
+        LocalDate todayDate = today.toLocalDate();
+        if (startDate.compareTo(todayDate) == 0) {
+            event.setStatus(EventStatus.ACTIVE);
+        }
+        if (startDate.compareTo(todayDate) < 0) {
+            event.setStatus(EventStatus.CLOSED);
+        }
+        return event;
+    }
+
+    public Event checkingEvent(LocalDateTime date) {
+        return repositories.findFirstByDateStart(date)
                 .orElseThrow(() -> new IllegalArgumentException("Event is not found"));
     }
 }

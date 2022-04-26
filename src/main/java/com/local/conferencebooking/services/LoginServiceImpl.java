@@ -42,6 +42,6 @@ public class LoginServiceImpl implements LoginService {
                 return from(token);
             }
         }
-        throw new UsersNotFountException("Пользователь не найден");
+        throw new UsersNotFountException("User not found");
     }
 }

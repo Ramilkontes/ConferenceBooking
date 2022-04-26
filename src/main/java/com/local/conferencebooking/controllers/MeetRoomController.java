@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -29,7 +30,7 @@ public class MeetRoomController {
     }
 
     @GetMapping
-    public LocalDate getTimeToday() {
+    public LocalDateTime getTimeToday() {
         return service.getTime();
     }
 }
