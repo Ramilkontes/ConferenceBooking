@@ -23,6 +23,8 @@
         <java.version>11</java.version>
         <postgresql.version>42.2.23</postgresql.version>
         <commons-lang3.version>3.12.0</commons-lang3.version>
+        <flyway-core.version>8.5.9</flyway-core.version>
+        <flyway-maven-plugin.version>8.5.9</flyway-maven-plugin.version>
     </properties>
 
     <dependencies>
@@ -66,6 +68,13 @@
             <version>${javax.servlet-api.version}</version>
             <scope>provided</scope>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.flywaydb/flyway-core -->
+        <dependency>
+            <groupId>org.flywaydb</groupId>
+            <artifactId>flyway-core</artifactId>
+            <version>${flyway-core.version}</version>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -89,6 +98,11 @@
                     <source>9</source>
                     <target>9</target>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.flywaydb</groupId>
+                <artifactId>flyway-maven-plugin</artifactId>
+                <version>${flyway-maven-plugin.version}</version>
             </plugin>
         </plugins>
     </build>

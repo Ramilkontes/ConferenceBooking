@@ -21,7 +21,6 @@ public class Event {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    //  @Column(name = "name", nullable = false, columnDefinition = "Event")
     private String name = "Event";
     @Column(name = "date_start")
     private LocalDateTime dateStart;

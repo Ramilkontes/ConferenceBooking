@@ -1,6 +1,8 @@
 package com.local.conferencebooking.services;
 
 import com.local.conferencebooking.exceptions.EventNotFoundException;
+import com.local.conferencebooking.exceptions.UsersNotFountException;
+import com.local.conferencebooking.forms.EventFormToCreate;
 import com.local.conferencebooking.forms.EventFormToFindByDate;
 import com.local.conferencebooking.forms.UserForm;
 import com.local.conferencebooking.models.Event;
@@ -9,12 +11,9 @@ import com.local.conferencebooking.models.User;
 import com.local.conferencebooking.repositories.EventRepositories;
 import com.local.conferencebooking.repositories.UserRepositories;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -43,7 +42,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User findOne(Long id) {
-        return repositories.getById(id);
+        return repositories.findById(id).orElseThrow(UsersNotFountException::new);
     }
 
     @Override
@@ -58,57 +57,64 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public ResponseEntity<Object> joinToRoomByEventName(Long id, String name) {
+    public Event joinToRoom(Long id, LocalDateTime date) throws IllegalArgumentException {
         User user = repositories.getById(id);
-        Event event = eventRepositories.findRoomByName(name).orElseThrow(EventNotFoundException::new);
-        LocalDateTime fromForm = event.getDateStart();
-        LocalDateTime today = roomService.getTime();
-        if (fromForm.getDayOfYear() == today.getDayOfYear()) {
-            event.getUsers().add(user);
-            eventRepositories.save(event);
-            user.getEvents().add(event);
-            repositories.save(user);
-            return ResponseEntity.ok().build();
-        }
-        return getHttpStatus(fromForm, today, event);
+        Event event = eventService.checkingEvent(date);
+        if (isPersonAbsentAtThisEvent(user)) {
+            return getEvent(user, event);
+        } else
+            throw new IllegalArgumentException("U have already registered");
     }
-
-    //TODO: прописать в контроллере HttpStatus и проверить его работу
 
     @Override
-    public ResponseEntity<Object> joinToRoom(Long id, EventFormToFindByDate eventForm) throws IllegalArgumentException {
+    public Event joinToRoomByEventName(Long id, String name) {
         User user = repositories.getById(id);
-        LocalDate fromForm = eventForm.getDate().toLocalDate();
-        LocalDate today = roomService.getTime().toLocalDate();
-        Event event = eventService.checkingEvent(eventForm.getDate());
-        if (fromForm.getYear() == today.getYear()) {
-            if (fromForm.getDayOfYear() == today.getDayOfYear()) {
-                event.getUsers().add(user);
-                event.setAmountPeople(event.getUsers().size());
-                user.getEvents().add(event);
-                eventRepositories.save(event);
-                repositories.save(user);
-            } else {
-            throw new IllegalArgumentException("Joining to this event is not unable, please check entered date");
-            }
-        }
-        return getHttpStatus(eventForm.getDate(), roomService.getTime(), event);
+        Event event = eventRepositories.findFirstByNameAndStatus(name, EventStatus.ACTIVE)
+                .orElseThrow(EventNotFoundException::new);
+        if (isPersonAbsentAtThisEvent(user)) {
+            if (event.getDateStart().getYear() == roomService.getTime().getYear()) {
+                return getEvent(user, event);
+            } else
+                throw new IllegalArgumentException("Joining already closed, check information relevance");
+        } else
+            throw new IllegalArgumentException("U have already registered");
     }
 
-    public ResponseEntity<Object> getHttpStatus(LocalDateTime date, LocalDateTime today, Event event) {
-        if (date.getYear() == today.getYear()) {
-            if (date.getDayOfYear() == today.getDayOfYear()) {
-                event.setStatus(EventStatus.ACTIVE);
-                return new ResponseEntity<>(HttpStatus.ACCEPTED);
-            } else if (date.getDayOfYear() > today.getDayOfYear()) {
-                event.setStatus(EventStatus.INACTIVE);
-                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-            } else {
-                event.setStatus(EventStatus.CLOSED);
-                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-            }
-        }
-        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    private Event getEvent(User user, Event event) {
+        setEventStatus(event.getDateStart(), roomService.getTime());
+        event.getUsers().add(user);
+        event.setAmountPeople(event.getUsers().size());
+        eventRepositories.save(event);
+        user.getEvents().add(event);
+        repositories.save(user);
+        return event;
     }
+
+    public void setEventStatus(LocalDateTime fromForm, LocalDateTime today) {
+        Event event = eventService.checkingEvent(fromForm);
+        if (fromForm.getDayOfYear() == today.getDayOfYear()) {
+            event.setStatus(EventStatus.ACTIVE);
+  //          eventRepositories.save(event);
+        } else if (fromForm.getDayOfYear() > today.getDayOfYear()) {
+            event.setStatus(EventStatus.INACTIVE);
+  //          eventRepositories.save(event);
+            throw new IllegalArgumentException("Joining to this event is not unable, " +
+                    "event still inactive");
+        } else {
+            event.setStatus(EventStatus.CLOSED);
+//            eventRepositories.save(event);
+            throw new IllegalArgumentException("Joining to this event is not unable, " +
+                    "event already closed");
+        }
+        eventRepositories.save(event);
+    }
+
+    private boolean isPersonAbsentAtThisEvent(User user) {
+        return eventRepositories.findAll().stream()
+                .noneMatch(x -> x.getUsers().equals(user));
+    }
+
+//TODO: тот кто создает сразу добавляется в комнату
+
+//TODO: добавить автообновление таблицы эвентов, а именно статусы бронирования
 }
-//TODO: сделать админу метод для моментальной установки CLOSED для всех закончнных событий

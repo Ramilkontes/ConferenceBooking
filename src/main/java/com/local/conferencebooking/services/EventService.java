@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 public interface EventService {
     Event getOne(Long id);
 
-    void createEvent(EventFormToCreate eventFormToCreate);
+    Event createEvent(EventFormToCreate eventFormToCreate);
 
     Event updateEvent(Long id, EventFormToCreate updateForm);
 
