@@ -18,7 +18,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String login;
-    private String firsName;
+    private String firstName;
     private String lastName;
     private String hashPassword;
     @Enumerated(EnumType.STRING)
@@ -31,6 +31,7 @@ public class User {
     inverseJoinColumns = @JoinColumn(name = "events_id"))
     private List<Event> events = new ArrayList<>();
 
-    @OneToMany(mappedBy = "user")
-    private List<Token> tokens = new ArrayList<>();
+    public boolean isAdmin() {
+        return this.role.equals(Role.ADMIN);
+    }
 }

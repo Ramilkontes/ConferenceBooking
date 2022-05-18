@@ -2,8 +2,6 @@ package com.local.conferencebooking.services;
 
 import com.local.conferencebooking.exceptions.EventNotFoundException;
 import com.local.conferencebooking.exceptions.UsersNotFountException;
-import com.local.conferencebooking.forms.EventFormToCreate;
-import com.local.conferencebooking.forms.EventFormToFindByDate;
 import com.local.conferencebooking.forms.UserForm;
 import com.local.conferencebooking.models.Event;
 import com.local.conferencebooking.models.EventStatus;
@@ -46,10 +44,15 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public User findOneByLogin(String login) {
+        return repositories.findOneByLogin(login).orElseThrow(UsersNotFountException::new);
+    }
+
+    @Override
     public User updateUser(Long id, UserForm updateForm) {
         String hashPassword = passwordEncoder.encode(updateForm.getPassword());
         User user = findOne(id);
-        user.setFirsName(updateForm.getFirstName());
+        user.setFirstName(updateForm.getFirstName());
         user.setLastName(updateForm.getLastName());
         user.setLogin(updateForm.getLogin());
         user.setHashPassword(hashPassword);

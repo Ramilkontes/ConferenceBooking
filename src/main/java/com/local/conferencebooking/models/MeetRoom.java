@@ -1,23 +1,23 @@
 package com.local.conferencebooking.models;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.EmbeddedId;
-import javax.persistence.Entity;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class MeetRoom {
 
-    @EmbeddedId
-    private ServiceClassForMeetRoom serviceClassForMeetRoom;
-    @Temporal(TemporalType.DATE)
-    private Date date;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long Id;
+    private Long userId;
+    private Long eventId;
 }

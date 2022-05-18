@@ -1,15 +1,19 @@
 package com.local.conferencebooking.services;
 
+import com.local.conferencebooking.models.Event;
+import com.local.conferencebooking.models.User;
 import com.local.conferencebooking.transfer.AdminEventsDto;
-import com.local.conferencebooking.transfer.AdminUsersDto;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
 public interface MeetRoomService {
-    List<AdminUsersDto> getAllPeople();
+    List<User> getAllPeople();
 
-    List<AdminEventsDto> gerAllRooms();
+    List<AdminEventsDto> getAllRooms();
 
     LocalDateTime getTime();
+
+    void saveIds(Long eventId, Long userId);
+    Event findNewEvent(Long userId);
 }

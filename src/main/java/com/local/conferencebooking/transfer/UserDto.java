@@ -23,7 +23,7 @@ public class UserDto {
         return UserDto.builder()
                 .id(user.getId())
                 .login(user.getLogin())
-                .firstName(user.getFirsName())
+                .firstName(user.getFirstName())
                 .lastName(user.getLastName())
                 .build();
     }

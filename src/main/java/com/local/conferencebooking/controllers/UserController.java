@@ -1,10 +1,8 @@
 package com.local.conferencebooking.controllers;
 
-import com.local.conferencebooking.forms.EventFormToCreate;
 import com.local.conferencebooking.forms.EventFormToFindByDate;
 import com.local.conferencebooking.forms.EventFormToFindByName;
 import com.local.conferencebooking.forms.UserForm;
-import com.local.conferencebooking.models.Event;
 import com.local.conferencebooking.models.User;
 import com.local.conferencebooking.services.EventService;
 import com.local.conferencebooking.services.MeetRoomService;
@@ -63,6 +61,8 @@ public class UserController {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
+
+
 
     private User checkForExists(Long id) {
         return service.findOne(id);

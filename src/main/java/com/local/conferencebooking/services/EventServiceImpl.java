@@ -1,6 +1,6 @@
 package com.local.conferencebooking.services;
 
-import com.local.conferencebooking.forms.EventFormToCreate;
+import com.local.conferencebooking.forms.EventFormToCreateOrUpdate;
 import com.local.conferencebooking.models.Event;
 import com.local.conferencebooking.models.EventStatus;
 import com.local.conferencebooking.repositories.EventRepositories;
@@ -28,10 +28,10 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public Event createEvent(EventFormToCreate eventFormToCreate) {
-        Event event = buildNewEvent(eventFormToCreate);
+    public Event createEvent(String name, LocalDateTime dateStart, LocalDateTime dateFinish) {
+        Event event = buildNewEvent(name, dateStart, dateFinish);
         checkBookingToExist(event);
-        long minutes = getMinutes(eventFormToCreate);
+        long minutes = getMinutes(dateStart, dateFinish);
         if (minutes >= 30 && minutes <= 1440) {
             Event eventCandidate = getStatusEvent(event);
             if (eventCandidate.getStatus().equals(EventStatus.ACTIVE) ||
@@ -48,7 +48,7 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public Event updateEvent(Long id, EventFormToCreate updateForm) {
+    public Event updateEvent(Long id, EventFormToCreateOrUpdate updateForm) {
         Event event = repositories.getById(id);
         event.setName(updateForm.getName());
         event.setDateStart(updateForm.getDateStart());
@@ -63,18 +63,14 @@ public class EventServiceImpl implements EventService {
         return room.get();
     }
 
-    private Event buildNewEvent(EventFormToCreate eventFormToCreate) {
-        String name;
-        if(eventFormToCreate.getName()==null) {
+    private Event buildNewEvent(String name, LocalDateTime dateStart, LocalDateTime dateFinish) {
+        if(name==null) {
             name = "Event";
-        }
-        else {
-            name = eventFormToCreate.getName();
         }
         return Event.builder()
                 .name(name)
-                .dateStart(eventFormToCreate.getDateStart())
-                .dateFinish(eventFormToCreate.getDateFinish())
+                .dateStart(dateStart)
+                .dateFinish(dateFinish)
                 .status(EventStatus.INACTIVE)
                 .build();
     }
@@ -98,9 +94,9 @@ public class EventServiceImpl implements EventService {
     //TODO: написать првоерку на корректность введения формы даты для создания бронирования
     //TODO: чтобы нельзя было создать событие в прошлом
 
-    private long getMinutes(EventFormToCreate eventFormToCreate) {
-        LocalDateTime start = eventFormToCreate.getDateStart();
-        LocalDateTime finish = eventFormToCreate.getDateFinish();
+    private long getMinutes(LocalDateTime start, LocalDateTime finish) {
+/*        LocalDateTime start = eventFormToCreate.getDateStart();
+        LocalDateTime finish = eventFormToCreate.getDateFinish();*/
         return ChronoUnit.MINUTES.between(start, finish);
     }
 
@@ -120,4 +116,12 @@ public class EventServiceImpl implements EventService {
         return repositories.findFirstByDateStart(date)
                 .orElseThrow(() -> new IllegalArgumentException("Event is not found"));
     }
+
+    @Override
+    public Event getInfoByUserId(Long userId) {
+        return roomService.findNewEvent(userId);
+    }
+
+
+
 }
