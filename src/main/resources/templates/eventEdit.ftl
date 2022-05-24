@@ -8,9 +8,6 @@
         <div class="form-style-2-heading">Time finish: ${event.dateFinish}</div>
     </div>
 </div>
-<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-    <span aria-hidden="true">&times;</span>
-</button>
 <br/>
 <a href="/">Come back</a>
 </@c.page>

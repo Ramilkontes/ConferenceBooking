@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.FutureOrPresent;
 import java.time.LocalDateTime;
 
 @Data
@@ -14,5 +15,6 @@ import java.time.LocalDateTime;
 public class EventFormToFindByDate {
     @JsonFormat(pattern="yyyy-MM-dd HH:mm", shape = JsonFormat.Shape.STRING)
     @JsonProperty(value = "date")
+    @FutureOrPresent
     private LocalDateTime date;
 }

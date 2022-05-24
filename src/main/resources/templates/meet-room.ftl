@@ -1,5 +1,5 @@
 <#import "parts/common.ftl" as c>
-
+<#import "parts/calendar.ftl" as cal>
 <@c.page>
 <!--<div class="form-row">
     <div class="form-group col-md-6">
@@ -10,25 +10,42 @@
         </form>
     </div>
 </div>-->
-<#if error??>
-<div class="alert alert-danger" role="alert">Sorry, event in the past can't be create.</div>
-</#if>
+<@cal.calendar />
 
 <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false"
    aria-controls="collapseExample">
     Add new Event
 </a>
-<div class="collapse" id="collapseExample">
+<div class="collapse <#if form??>show</#if>" id="collapseExample">
     <div class="form-group mt-3">
         <form method="post" action="\events">
             <div class="form-group">
-                <input type="text" class="form-control" name="name" placeholder="Enter the name"/>
+                <input type="text" class="form-control ${(nameError??)?string('is-invalid', '')}"
+                       value="<#if form??>${form.name}</#if>" name="name" placeholder="Enter the name"/>
+                <#if nameError??>
+                    <div class="invalid-feedback">
+                        ${nameError}
+                    </div>
+                </#if>
             </div>
             <div class="form-group">
-                <input type="datetime-local" class="form-control" name="dateStart" placeholder="Date Start">
+                <input type="datetime-local" class="form-control ${(dateStartError??)?string('is-invalid', '')}"
+                       value="<#if form??>${form.dateStart}</#if>" name="dateStart"
+                       placeholder="Date Start">
+                <#if dateStartError??>
+                    <div class="invalid-feedback">
+                        ${dateStartError}
+                    </div>
+                </#if>
             </div>
             <div class="form-group">
-                <input type="datetime-local" class="form-control" name="dateFinish" placeholder="Date Finish">
+                <input type="datetime-local" class="form-control ${(dateFinishError??)?string('is-invalid', '')}"
+                       value="<#if form??>${form.dateFinish}</#if>" name="dateFinish" placeholder="Date Finish">
+                <#if dateFinishError??>
+                    <div class="invalid-feedback">
+                        ${dateFinishError}
+                    </div>
+                </#if>
             </div>
             <div class="form-group">
                 <button type="submit" class="btn btn-primary">Add</button>

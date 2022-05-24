@@ -8,15 +8,17 @@ import com.local.conferencebooking.services.MeetRoomService;
 import com.local.conferencebooking.services.UserService;
 import com.local.conferencebooking.transfer.EventDto;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 import java.time.LocalDateTime;
+import java.util.Map;
 
 import static com.local.conferencebooking.transfer.EventDto.from;
 
@@ -44,16 +46,22 @@ public class EventController {
 
 
     @PostMapping()
-    public String createEvent(@RequestParam String name,
-                              @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dateStart,
-                              @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dateFinish,
+    public String createEvent(@Valid EventFormToCreateOrUpdate eventForm, BindingResult bindingResult,
                               Model model, HttpServletRequest request) {
-        User user = userService.findOneByLogin(request.getUserPrincipal().getName());
-        Event event = service.createEvent(name, dateStart, dateFinish);
-        roomService.saveIds(event.getId(), user.getId());
-        model.addAttribute("success", true);
-        model.addAttribute("event", event);
-        return "event";
+        if (bindingResult.hasErrors()) {
+            Map<String, String> errorsMap = ControllerUtils.getErrors(bindingResult);
+            model.mergeAttributes(errorsMap);
+            model.addAttribute("form", eventForm);
+            return "meet-room";
+        } else {
+            User user = userService.findOneByLogin(request.getUserPrincipal().getName());
+            Event event = service.createEvent(eventForm.getName(), eventForm.getDateStart(), eventForm.getDateFinish());
+            roomService.saveIds(event.getId(), user.getId());
+            model.addAttribute("success", true);
+            model.addAttribute("event", event);
+            model.addAttribute("form", null);
+            return "event";
+        }
     }
 
     @GetMapping("/{id}")
@@ -63,11 +71,9 @@ public class EventController {
 
     @PostMapping("/{id}")
     public String updateInformation(@PathVariable Long id,
-                                    @RequestParam String name,
-                                    @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dateStart,
-                                    @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dateFinish,
+                                    @Valid EventFormToCreateOrUpdate eventForm, BindingResult bindingResult,
                                     Model model, HttpServletRequest request) {
-        Event event = saveUpdate(id, getEventFormToUpdate(name, dateStart, dateFinish));
+        Event event = saveUpdate(id, eventForm);
         model.addAttribute("event", event);
         return "eventEdit";
     }
@@ -89,7 +95,8 @@ public class EventController {
 
     }
 
-    private EventFormToCreateOrUpdate getEventFormToUpdate(String name, LocalDateTime dateStart, LocalDateTime dateFinish) {
+    private EventFormToCreateOrUpdate getEventFormToUpdate(String name, LocalDateTime dateStart, LocalDateTime
+            dateFinish) {
         EventFormToCreateOrUpdate updating = EventFormToCreateOrUpdate.builder()
                 .name(name)
                 .dateStart(dateStart)
