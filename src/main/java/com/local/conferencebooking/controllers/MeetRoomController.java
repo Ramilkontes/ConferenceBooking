@@ -1,7 +1,9 @@
 package com.local.conferencebooking.controllers;
 
 import com.local.conferencebooking.forms.EventFormToCreateOrUpdate;
+import com.local.conferencebooking.models.Event;
 import com.local.conferencebooking.services.MeetRoomService;
+import com.local.conferencebooking.services.ServiceClassForDate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -18,10 +20,11 @@ import java.util.List;
 @Controller
 public class MeetRoomController {
 
-    private LocalDate dayWeek;
-
     @Autowired
     private MeetRoomService service;
+
+    @Autowired
+    private ServiceClassForDate classForDate;
 
     @GetMapping("/meet-room/people")
     public String getAllPeople(Model model) {
@@ -43,40 +46,34 @@ public class MeetRoomController {
         /*UserDetailsImpl details = (UserDetailsImpl) authentication.getPrincipal();
         UserDto user = from(details.getUser());
         model.addAttribute("user", user);*/
-
+        List<LocalDate> week;
         if (model.containsAttribute("flag")) {
-            model.addAttribute("week", service.getWeek(dayWeek));
+            week = service.getWeek(classForDate.getDate(1L));
             model.addAttribute("flag", null);
         } else {
-            List<LocalDate> week = service.getWeek(LocalDate.now());
-            dayWeek = week.get(0);
-            model.addAttribute("week", week);
+            week = service.getWeek(LocalDate.now());
+            classForDate.updateDate(1L, week.get(0));
         }
         if (!model.containsAttribute("form")) {
             model.addAttribute("event", eventForm);
         }
+        model.addAttribute("week", week);
+        getModels(model, week);
         return "meet-room";
+    }
+
+    private void getModels(Model model, List<LocalDate> week) {
+        List<Event> currentEvents = service.getCurrentEvent(week);
+        model.addAllAttributes(service.getEventsByTime(currentEvents));
+        model.addAllAttributes(service.getEventsByDay(week, currentEvents));
     }
 
     @PostMapping("/")
     public String getPreviousOrNextWeek(@RequestParam Integer pointer, Model model) {
-        List<LocalDate> requiredWeek = getRequiredWeek(dayWeek, pointer);
-        model.addAttribute("week", requiredWeek);
+        List<LocalDate> week = service.getRequiredWeek(classForDate.getDate(1L), pointer);
+        model.addAttribute("week", week);
         model.addAttribute("flag", true);
+        getModels(model, week);
         return "meet-room";
-    }
-
-    private List<LocalDate> getRequiredWeek(LocalDate day, Integer pointer) {
-        List<LocalDate> date;
-        if (pointer < 0) {
-            date = service.getWeek(day.minusWeeks(1));
-            dayWeek = date.get(0);
-            return date;
-        } else {
-            date = service.getWeek(day.plusWeeks(1));
-            dayWeek = date.get(0);
-            return date;
-
-        }
     }
 }

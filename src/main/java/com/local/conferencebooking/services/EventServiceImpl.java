@@ -92,7 +92,6 @@ public class EventServiceImpl implements EventService {
     }
 
     //TODO: написать првоерку на корректность введения формы даты для создания бронирования
-    //TODO: чтобы нельзя было создать событие в прошлом
 
     private long getMinutes(LocalDateTime start, LocalDateTime finish) {
 /*        LocalDateTime start = eventFormToCreate.getDateStart();
@@ -121,7 +120,4 @@ public class EventServiceImpl implements EventService {
     public Event getInfoByUserId(Long userId) {
         return roomService.findNewEvent(userId);
     }
-
-
-
 }
