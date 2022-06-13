@@ -9,6 +9,7 @@ import com.local.conferencebooking.repositories.UserRepositories;
 import com.local.conferencebooking.transfer.AdminEventsDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 import java.time.*;
 import java.util.*;
@@ -62,6 +63,12 @@ public class MeetRoomServiceImpl implements MeetRoomService {
                 .get();
 
         return eventRepositories.getById(meetRoom.getEventId());
+    }
+    @Override
+    public void getModels(Model model, List<LocalDate> week) {
+        List<Event> currentEvents = getCurrentEvent(week);
+        model.addAllAttributes(getEventsByTime(currentEvents));
+        model.addAllAttributes(getEventsByDay(week, currentEvents));
     }
 
     @Override

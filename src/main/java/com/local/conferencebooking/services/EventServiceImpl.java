@@ -33,13 +33,7 @@ public class EventServiceImpl implements EventService {
         checkBookingToExist(event);
         long minutes = getMinutes(dateStart, dateFinish);
         if (minutes >= 30 && minutes <= 1440) {
-            Event eventCandidate = getStatusEvent(event);
-            if (eventCandidate.getStatus().equals(EventStatus.ACTIVE) ||
-                    eventCandidate.getStatus().equals(EventStatus.INACTIVE)) {
-                repositories.save(event);
-                return event;
-            } else
-                throw new IllegalArgumentException("Sorry, event in the past can't be create");
+            return event;
         } else {
             throw new IllegalArgumentException("Booking is not possible, please check entered date:" +
                     "Minimum booking interval 30 minutes,\n" +

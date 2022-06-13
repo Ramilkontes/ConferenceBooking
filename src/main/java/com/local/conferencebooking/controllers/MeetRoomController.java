@@ -9,6 +9,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -39,7 +40,7 @@ public class MeetRoomController {
     }
 
     @GetMapping("/")
-    public String getMainPage(@Valid EventFormToCreateOrUpdate eventForm, Model model, Authentication authentication) {
+    public String getMainPage(Model model, Authentication authentication) {
         if (authentication == null) {
             return "redirect:/login";
         }
@@ -54,26 +55,22 @@ public class MeetRoomController {
             week = service.getWeek(LocalDate.now());
             classForDate.updateDate(1L, week.get(0));
         }
-        if (!model.containsAttribute("form")) {
+        /*if (model.containsAttribute("form")) {
             model.addAttribute("event", eventForm);
-        }
+        }*/
         model.addAttribute("week", week);
-        getModels(model, week);
+        service.getModels(model, week);
         return "meet-room";
     }
 
-    private void getModels(Model model, List<LocalDate> week) {
-        List<Event> currentEvents = service.getCurrentEvent(week);
-        model.addAllAttributes(service.getEventsByTime(currentEvents));
-        model.addAllAttributes(service.getEventsByDay(week, currentEvents));
-    }
+
 
     @PostMapping("/")
     public String getPreviousOrNextWeek(@RequestParam Integer pointer, Model model) {
         List<LocalDate> week = service.getRequiredWeek(classForDate.getDate(1L), pointer);
         model.addAttribute("week", week);
         model.addAttribute("flag", true);
-        getModels(model, week);
+        service.getModels(model, week);
         return "meet-room";
     }
 }

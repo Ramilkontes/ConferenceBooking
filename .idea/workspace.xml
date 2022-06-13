@@ -4,14 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c6e66d34-137b-44e8-979e-756b0cee06aa" name="Default Changelist" comment="Added calendarform for front, also started set validation">
+    <list default="true" id="c6e66d34-137b-44e8-979e-756b0cee06aa" name="Default Changelist" comment="Added changed weeks with current events for week">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/conferencebooking/controllers/ControllerUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/conferencebooking/controllers/ControllerUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/conferencebooking/controllers/EventController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/conferencebooking/controllers/EventController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/local/conferencebooking/controllers/MeetRoomController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/conferencebooking/controllers/MeetRoomController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/conferencebooking/models/ServiceClassForMeetRoom.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/conferencebooking/models/ServiceClassForMeetRoom.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/conferencebooking/forms/EventFormToCreateOrUpdate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/conferencebooking/forms/EventFormToCreateOrUpdate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/conferencebooking/models/Event.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/conferencebooking/models/Event.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/local/conferencebooking/services/EventServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/conferencebooking/services/EventServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/local/conferencebooking/services/MeetRoomService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/conferencebooking/services/MeetRoomService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/local/conferencebooking/services/MeetRoomServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/conferencebooking/services/MeetRoomServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/parts/calendar.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/parts/calendar.ftl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/meet-room.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/meet-room.ftl" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -164,7 +168,14 @@
       <option name="project" value="LOCAL" />
       <updated>1653398994678</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Added changed weeks with current events for week">
+      <created>1654530912623</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1654530912623</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -189,6 +200,7 @@
     <MESSAGE value="version1" />
     <MESSAGE value="Changed Back with Front, added login, mainPage and mended controller involve create, update, get form's to event" />
     <MESSAGE value="Added calendarform for front, also started set validation" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added calendarform for front, also started set validation" />
+    <MESSAGE value="Added changed weeks with current events for week" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added changed weeks with current events for week" />
   </component>
 </project>

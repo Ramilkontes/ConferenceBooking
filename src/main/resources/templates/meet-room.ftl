@@ -23,26 +23,26 @@
                 <input type="text" class="form-control ${(nameError??)?string('is-invalid', '')}"
                        value="<#if form??>${form.name}</#if>" name="name" placeholder="Enter the name"/>
                 <#if nameError??>
-                    <div class="invalid-feedback">
+                    <div style="color:red" class="invalid-feedback">
                         ${nameError}
                     </div>
                 </#if>
             </div>
             <div class="form-group">
                 <input type="datetime-local" class="form-control ${(dateStartError??)?string('is-invalid', '')}"
-                       value="<#if form??>${form.dateStart}</#if>" name="dateStart"
+                       value="<#if form??>${dateStart}</#if>" name="dateStart"
                        placeholder="Date Start">
                 <#if dateStartError??>
-                    <div class="invalid-feedback">
+                    <div style="color:red" class="invalid-feedback">
                         ${dateStartError}
                     </div>
                 </#if>
             </div>
             <div class="form-group">
                 <input type="datetime-local" class="form-control ${(dateFinishError??)?string('is-invalid', '')}"
-                       value="<#if form??>${form.dateFinish}</#if>" name="dateFinish" placeholder="Date Finish">
+                       value="<#if form??>${dateFinish}</#if>" name="dateFinish" placeholder="Date Finish">
                 <#if dateFinishError??>
-                    <div class="invalid-feedback">
+                    <div style="color:red" class="invalid-feedback">
                         ${dateFinishError}
                     </div>
                 </#if>

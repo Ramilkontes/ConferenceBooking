@@ -5,6 +5,7 @@ import com.local.conferencebooking.models.Event;
 import com.local.conferencebooking.models.User;
 import com.local.conferencebooking.services.EventService;
 import com.local.conferencebooking.services.MeetRoomService;
+import com.local.conferencebooking.services.ServiceClassForDate;
 import com.local.conferencebooking.services.UserService;
 import com.local.conferencebooking.transfer.EventDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,9 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Map;
 
 import static com.local.conferencebooking.transfer.EventDto.from;
@@ -35,6 +38,10 @@ public class EventController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private ServiceClassForDate classForDate;
+
+
     @GetMapping()
     public String getInfo(HttpServletRequest request, Model model) {
         if (request.getParameterMap().containsKey("error")) {
@@ -50,8 +57,13 @@ public class EventController {
                               Model model, HttpServletRequest request) {
         if (bindingResult.hasErrors()) {
             Map<String, String> errorsMap = ControllerUtils.getErrors(bindingResult);
-            model.mergeAttributes(errorsMap);
+            model.addAllAttributes(errorsMap);
             model.addAttribute("form", eventForm);
+            model.addAttribute("dateStart", LocalDateTime.now());
+            model.addAttribute("dateFinish", LocalDateTime.now());
+            List<LocalDate> week = roomService.getWeek(classForDate.getDate(1L));
+            model.addAttribute("week", week);
+            roomService.getModels(model, week);
             return "meet-room";
         } else {
             User user = userService.findOneByLogin(request.getUserPrincipal().getName());
