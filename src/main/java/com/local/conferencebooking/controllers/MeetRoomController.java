@@ -1,7 +1,5 @@
 package com.local.conferencebooking.controllers;
 
-import com.local.conferencebooking.forms.EventFormToCreateOrUpdate;
-import com.local.conferencebooking.models.Event;
 import com.local.conferencebooking.services.MeetRoomService;
 import com.local.conferencebooking.services.ServiceClassForDate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,13 +7,11 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.validation.Valid;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -37,6 +33,12 @@ public class MeetRoomController {
     public String getAllRooms(Model model) {
         model.addAttribute("events", service.getAllRooms());
         return "eventsList";
+    }
+
+    @GetMapping("/meet-room/events/{id}")
+    public String getMyEvents(@PathVariable Long id, Model model){
+        model.addAttribute("concernments", service.getMyConcernments(id));
+        return "myConcernments";
     }
 
     @GetMapping("/")

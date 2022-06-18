@@ -64,11 +64,19 @@ public class MeetRoomServiceImpl implements MeetRoomService {
 
         return eventRepositories.getById(meetRoom.getEventId());
     }
+
+
     @Override
     public void getModels(Model model, List<LocalDate> week) {
         List<Event> currentEvents = getCurrentEvent(week);
         model.addAllAttributes(getEventsByTime(currentEvents));
         model.addAllAttributes(getEventsByDay(week, currentEvents));
+    }
+
+    @Override
+    public List<Event> getMyConcernments(Long id) {
+        User user = userRepositories.getById(id);
+        return user.getEvents();
     }
 
     @Override

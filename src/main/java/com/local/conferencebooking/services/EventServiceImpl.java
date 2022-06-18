@@ -6,11 +6,14 @@ import com.local.conferencebooking.models.EventStatus;
 import com.local.conferencebooking.repositories.EventRepositories;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Service
@@ -28,17 +31,9 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public Event createEvent(String name, LocalDateTime dateStart, LocalDateTime dateFinish) {
-        Event event = buildNewEvent(name, dateStart, dateFinish);
-        checkBookingToExist(event);
-        long minutes = getMinutes(dateStart, dateFinish);
-        if (minutes >= 30 && minutes <= 1440) {
-            return event;
-        } else {
-            throw new IllegalArgumentException("Booking is not possible, please check entered date:" +
-                    "Minimum booking interval 30 minutes,\n" +
-                    "maximum 24 hours");
-        }
+    public Event createEvent(EventFormToCreateOrUpdate eventForm) {
+        Event event = buildNewEvent(eventForm.getName(), eventForm.getDateStart(), eventForm.getDateFinish());
+        return repositories.save(event);
     }
 
     @Override
@@ -58,9 +53,6 @@ public class EventServiceImpl implements EventService {
     }
 
     private Event buildNewEvent(String name, LocalDateTime dateStart, LocalDateTime dateFinish) {
-        if(name==null) {
-            name = "Event";
-        }
         return Event.builder()
                 .name(name)
                 .dateStart(dateStart)
@@ -69,27 +61,46 @@ public class EventServiceImpl implements EventService {
                 .build();
     }
 
-    private void checkBookingToExist(Event event) {
+    private boolean checkBookingToExist(EventFormToCreateOrUpdate eventForm) {
+        Event event = buildNewEvent(eventForm.getName(), eventForm.getDateStart(), eventForm.getDateFinish());
         List<Event> events = repositories.findAll();
         LocalDateTime startNewEvent = event.getDateStart();
         LocalDateTime finishNewEvent = event.getDateFinish();
         if (events.stream().anyMatch(x -> x.getDateStart().isAfter(startNewEvent)
                 && x.getDateStart().isBefore(finishNewEvent))) {
-            throw new IllegalArgumentException("Booking is not possible, this time is engaged");
+            return false;
         } else if (events.stream().anyMatch(x -> x.getDateFinish().isAfter(startNewEvent)
                 && x.getDateFinish().isBefore(finishNewEvent))) {
-            throw new IllegalArgumentException("Booking is not possible, this time is engaged");
+            return false;
         } else if (events.stream().anyMatch(x -> x.getDateStart().equals(startNewEvent)
                 || x.getDateFinish().equals(finishNewEvent))) {
-            throw new IllegalArgumentException("Booking is not possible, this time is engaged");
+            return false;
+        }
+        return true;
+    }
+
+    private boolean checkingToCorrectForm(EventFormToCreateOrUpdate eventForm) {
+        long minutes = getMinutes(eventForm.getDateStart(), eventForm.getDateFinish());
+        if (minutes >= 30 && minutes <= 1440) {
+            return true;
+        } else {
+            return false;
         }
     }
 
-    //TODO: написать првоерку на корректность введения формы даты для создания бронирования
+    @Override
+    public boolean checking (EventFormToCreateOrUpdate eventForm, Model model) {
+        if (!checkBookingToExist(eventForm)) {
+            model.addAttribute("engagedTime", "Booking is not possible, this time is engaged");
+            return false;
+        } else if (!checkingToCorrectForm(eventForm)) {
+            model.addAttribute("notCorrectness", "Booking is not possible, please check entered date: " +
+                    "Minimum booking interval 30 minutes, maximum - 24 hours");
+            return false;
+        } else return true;
+    }
 
     private long getMinutes(LocalDateTime start, LocalDateTime finish) {
-/*        LocalDateTime start = eventFormToCreate.getDateStart();
-        LocalDateTime finish = eventFormToCreate.getDateFinish();*/
         return ChronoUnit.MINUTES.between(start, finish);
     }
 
@@ -110,8 +121,4 @@ public class EventServiceImpl implements EventService {
                 .orElseThrow(() -> new IllegalArgumentException("Event is not found"));
     }
 
-    @Override
-    public Event getInfoByUserId(Long userId) {
-        return roomService.findNewEvent(userId);
-    }
 }

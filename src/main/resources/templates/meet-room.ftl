@@ -16,7 +16,8 @@
    aria-controls="collapseExample">
     Add new Event
 </a>
-<div class="collapse <#if form??>show</#if>" id="collapseExample">
+
+<div class="collapse <#if form?? || engagedTime?? || notCorrectness??>show</#if>" id="collapseExample">
     <div class="form-group mt-3">
         <form method="post" action="\events">
             <div class="form-group">
@@ -47,6 +48,15 @@
                     </div>
                 </#if>
             </div>
+            <#if engagedTime??>
+                <div class="alert alert-danger" role="alert">
+                     ${engagedTime}
+                </div>
+            <#elseIf notCorrectness??>
+                <div class="alert alert-danger" role="alert">
+                    ${notCorrectness}
+                </div>
+            </#if>
             <div class="form-group">
                 <button type="submit" class="btn btn-primary">Add</button>
             </div>

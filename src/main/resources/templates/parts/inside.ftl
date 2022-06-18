@@ -24,9 +24,9 @@
 <#else>
 <div class="alert alert-primary" role="alert">
     <#list times as time>
-    <div class="form-style-2-heading">Event name: ${time.name}</div>
-    <div class="form-style-2-heading">Time start: ${time.dateStart}</div>
-    <div class="form-style-2-heading">Time finish: ${time.dateFinish}</div>
+    <p><small>Event name: ${time.name}</small></p>
+    <p><small>Time start: ${time.dateStart}</small></p>
+    <p><small>Time finish: ${time.dateFinish}</small></p>
 </#list>
 </div>
 </#if>

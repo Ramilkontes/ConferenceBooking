@@ -2,13 +2,14 @@ package com.local.conferencebooking.services;
 
 import com.local.conferencebooking.forms.EventFormToCreateOrUpdate;
 import com.local.conferencebooking.models.Event;
+import org.springframework.ui.Model;
 
 import java.time.LocalDateTime;
 
 public interface EventService {
     Event getOne(Long id);
 
-    Event createEvent(String name, LocalDateTime dateStart, LocalDateTime dateFinish);
+    Event createEvent(EventFormToCreateOrUpdate eventForm);
 
     Event updateEvent(Long id, EventFormToCreateOrUpdate updateForm);
 
@@ -16,5 +17,5 @@ public interface EventService {
 
     Event checkingEvent(LocalDateTime date);
 
-    Event getInfoByUserId(Long user_id);
+    boolean checking (EventFormToCreateOrUpdate eventForm, Model model);
 }

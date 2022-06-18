@@ -58,22 +58,31 @@ public class EventController {
         if (bindingResult.hasErrors()) {
             Map<String, String> errorsMap = ControllerUtils.getErrors(bindingResult);
             model.addAllAttributes(errorsMap);
-            model.addAttribute("form", eventForm);
-            model.addAttribute("dateStart", LocalDateTime.now());
-            model.addAttribute("dateFinish", LocalDateTime.now());
-            List<LocalDate> week = roomService.getWeek(classForDate.getDate(1L));
-            model.addAttribute("week", week);
-            roomService.getModels(model, week);
+            getMainPage(eventForm, model);
+            return "meet-room";
+        } else if (!service.checking(eventForm, model)) {
+            getMainPage(eventForm, model);
             return "meet-room";
         } else {
             User user = userService.findOneByLogin(request.getUserPrincipal().getName());
-            Event event = service.createEvent(eventForm.getName(), eventForm.getDateStart(), eventForm.getDateFinish());
+            Event event = service.createEvent(eventForm);
             roomService.saveIds(event.getId(), user.getId());
             model.addAttribute("success", true);
             model.addAttribute("event", event);
             model.addAttribute("form", null);
+            model.addAttribute("engagedTime", null);
+            model.addAttribute("notCorrectness", null);
             return "event";
         }
+    }
+
+    private void getMainPage(EventFormToCreateOrUpdate eventForm, Model model) {
+        model.addAttribute("form", eventForm);
+        model.addAttribute("dateStart", LocalDateTime.now());
+        model.addAttribute("dateFinish", LocalDateTime.now());
+        List<LocalDate> week = roomService.getWeek(classForDate.getDate(1L));
+        model.addAttribute("week", week);
+        roomService.getModels(model, week);
     }
 
     @GetMapping("/{id}")

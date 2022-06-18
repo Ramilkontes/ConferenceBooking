@@ -32,4 +32,6 @@ public interface MeetRoomService {
     Map<String, Boolean> getEventsByTime (List<Event> events);
 
     void getModels(Model model, List<LocalDate> week);
+
+    List<Event> getMyConcernments(Long id);
 }
