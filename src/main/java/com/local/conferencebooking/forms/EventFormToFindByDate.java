@@ -13,8 +13,6 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 public class EventFormToFindByDate {
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm", shape = JsonFormat.Shape.STRING)
-    @JsonProperty(value = "date")
     @FutureOrPresent
     private LocalDateTime date;
 }

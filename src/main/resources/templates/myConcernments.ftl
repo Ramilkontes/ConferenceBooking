@@ -2,7 +2,7 @@
 
 <@c.page>
 
-<#if concernment??>
+<#if concernments??>
 <div>My concernments</div>
 <table>
   <thead>

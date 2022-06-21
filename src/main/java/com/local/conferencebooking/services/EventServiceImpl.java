@@ -11,9 +11,7 @@ import org.springframework.ui.Model;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 @Service
@@ -89,7 +87,7 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public boolean checking (EventFormToCreateOrUpdate eventForm, Model model) {
+    public boolean checking(EventFormToCreateOrUpdate eventForm, Model model) {
         if (!checkBookingToExist(eventForm)) {
             model.addAttribute("engagedTime", "Booking is not possible, this time is engaged");
             return false;

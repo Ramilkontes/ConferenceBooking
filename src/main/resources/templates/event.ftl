@@ -2,7 +2,6 @@
 
 <@c.page>
 
-<#if success??>
 <div class="alert alert-success alert-dismissible" role="alert">
     <div>New event has created:
         <div class="form-style-2-heading">Name: ${event.name}</div>
@@ -10,6 +9,7 @@
         <div class="form-style-2-heading">Time finish: ${event.dateFinish}</div>
     </div>
 </div>
+
 <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false"
    aria-controls="collapseExample">
     Edit
@@ -36,6 +36,5 @@
     </div>
 </div>
 <br/>
-</#if>
 <a href="/">Come back</a>
 </@c.page>

@@ -78,37 +78,37 @@
         <#if zero??>
         <th>
             <#if mondayZero??>
-            <@inside.inside times = mondayZero />
+            <@inside.inside times = mondayZero flag = MONDAY />
         </#if>
         </th>
         <th>
             <#if tuesdayZero??>
-            <@inside.inside times = tuesdayZero />
+            <@inside.inside times = tuesdayZero flag = TUESDAY />
         </#if>
         </th>
         <th>
             <#if wednesdayZero??>
-            <@inside.inside times = wednesdayZero />
+            <@inside.inside times = wednesdayZero flag = WEDNESDAY />
         </#if>
         </th>
         <th>
             <#if thursdayZero??>
-            <@inside.inside times = thursdayZero />
+            <@inside.inside times = thursdayZero flag = THURSDAY />
         </#if>
         </th>
         <th>
             <#if fridayZero??>
-            <@inside.inside times = fridayZero />
+            <@inside.inside times = fridayZero flag = FRIDAY />
         </#if>
         </th>
         <th>
             <#if saturdayZero??>
-            <@inside.inside times = saturdayZero />
+            <@inside.inside times = saturdayZero flag = SATURDAY />
         </#if>
         </th>
         <th>
             <#if sundayZero??>
-            <@inside.inside times = sundayZero />
+            <@inside.inside times = sundayZero flag = SUNDAY />
         </#if>
         </th>
         <th></th>
@@ -121,37 +121,37 @@
         <#if one??>
         <th>
             <#if mondayOne??>
-            <@inside.inside times = mondayOne />
+            <@inside.inside times = mondayOne flag = MONDAY />
         </#if>
         </th>
         <th>
             <#if tuesdayOne??>
-            <@inside.inside times = tuesdayOne />
+            <@inside.inside times = tuesdayOne flag = TUESDAY />
         </#if>
         </th>
         <th>
             <#if wednesdayOne??>
-            <@inside.inside times = wednesdayOne />
+            <@inside.inside times = wednesdayOne flag = WEDNESDAY />
         </#if>
         </th>
         <th>
             <#if thursdayOne??>
-            <@inside.inside times = thursdayOne />
+            <@inside.inside times = thursdayOne flag = THURSDAY />
         </#if>
         </th>
         <th>
             <#if fridayOne??>
-            <@inside.inside times = fridayOne />
+            <@inside.inside times = fridayOne flag = FRIDAY />
         </#if>
         </th>
         <th>
             <#if saturdayOne??>
-            <@inside.inside times = saturdayOne />
+            <@inside.inside times = saturdayOne flag = SATURDAY  />
         </#if>
         </th>
         <th>
             <#if sundayOne??>
-            <@inside.inside times = sundayOne />
+            <@inside.inside times = sundayOne flag = SUNDAY />
         </#if>
         </th>
         <th></th>
@@ -164,37 +164,37 @@
         <#if two??>
         <th>
             <#if mondayTwo??>
-            <@inside.inside times = mondayTwo />
+            <@inside.inside times = mondayTwo flag = MONDAY />
         </#if>
         </th>
         <th>
             <#if tuesdayTwo??>
-            <@inside.inside times = tuesdayTwo />
+            <@inside.inside times = tuesdayTwo flag = TUESDAY />
         </#if>
         </th>
         <th>
             <#if wednesdayTwo??>
-            <@inside.inside times = wednesdayTwo />
+            <@inside.inside times = wednesdayTwo flag = WEDNESDAY />
         </#if>
         </th>
         <th>
             <#if thursdayTwo??>
-            <@inside.inside times = thursdayTwo />
+            <@inside.inside times = thursdayTwo flag = THURSDAY />
         </#if>
         </th>
         <th>
             <#if fridayTwo??>
-            <@inside.inside times = fridayTwo />
+            <@inside.inside times = fridayTwo flag = FRIDAY />
         </#if>
         </th>
         <th>
             <#if saturdayTwo??>
-            <@inside.inside times = saturdayTwo />
+            <@inside.inside times = saturdayTwo flag = SATURDAY  />
         </#if>
         </th>
         <th>
             <#if sundayTwo??>
-            <@inside.inside times = sundayTwo />
+            <@inside.inside times = sundayTwo flag = SUNDAY />
         </#if>
         </th>
         <th></th>
@@ -207,37 +207,37 @@
         <#if three??>
         <th>
             <#if mondayThree??>
-            <@inside.inside times = mondayThree />
+            <@inside.inside times = mondayThree flag = MONDAY />
         </#if>
         </th>
         <th>
             <#if tuesdayThree??>
-            <@inside.inside times = tuesdayThree />
+            <@inside.inside times = tuesdayThree flag = TUESDAY />
         </#if>
         </th>
         <th>
             <#if wednesdayThree??>
-            <@inside.inside times = wednesdayThree />
+            <@inside.inside times = wednesdayThree flag = WEDNESDAY />
         </#if>
         </th>
         <th>
             <#if thursdayThree??>
-            <@inside.inside times = thursdayThree />
+            <@inside.inside times = thursdayThree flag = THURSDAY />
         </#if>
         </th>
         <th>
             <#if fridayThree??>
-            <@inside.inside times = fridayThree />
+            <@inside.inside times = fridayThree flag = FRIDAY />
         </#if>
         </th>
         <th>
             <#if saturdayThree??>
-            <@inside.inside times = saturdayThree />
+            <@inside.inside times = saturdayThree flag = SATURDAY  />
         </#if>
         </th>
         <th>
             <#if sundayThree??>
-            <@inside.inside times = sundayThree />
+            <@inside.inside times = sundayThree flag = SUNDAY />
         </#if>
         </th>
         <th></th>
@@ -250,37 +250,37 @@
         <#if four??>
         <th>
             <#if mondaySixFour??>
-            <@inside.inside times = mondayFour />
+            <@inside.inside times = mondayFour flag = MONDAY />
         </#if>
         </th>
         <th>
             <#if tuesdayFour??>
-            <@inside.inside times = tuesdayFour />
+            <@inside.inside times = tuesdayFour flag = TUESDAY />
         </#if>
         </th>
         <th>
             <#if wednesdayFour??>
-            <@inside.inside times = wednesdayFour />
+            <@inside.inside times = wednesdayFour flag = WEDNESDAY />
         </#if>
         </th>
         <th>
             <#if thursdayFour??>
-            <@inside.inside times = thursdayFour />
+            <@inside.inside times = thursdayFour flag = THURSDAY />
         </#if>
         </th>
         <th>
             <#if fridayFour??>
-            <@inside.inside times = fridayFour />
+            <@inside.inside times = fridayFour flag = FRIDAY />
         </#if>
         </th>
         <th>
             <#if saturdayFour??>
-            <@inside.inside times = saturdayFour />
+            <@inside.inside times = saturdayFour flag = SATURDAY  />
         </#if>
         </th>
         <th>
             <#if sundayFour??>
-            <@inside.inside times = sundayFour />
+            <@inside.inside times = sundayFour flag = SUNDAY />
         </#if>
         </th>
         <th></th>
@@ -293,37 +293,37 @@
         <#if five??>
         <th>
             <#if mondayFive??>
-            <@inside.inside times = mondayFive />
+            <@inside.inside times = mondayFive flag = MONDAY />
         </#if>
         </th>
         <th>
             <#if tuesdayFive??>
-            <@inside.inside times = tuesdayFive />
+            <@inside.inside times = tuesdayFive flag = TUESDAY />
         </#if>
         </th>
         <th>
             <#if wednesdayFive??>
-            <@inside.inside times = wednesdayFive />
+            <@inside.inside times = wednesdayFive flag = WEDNESDAY />
         </#if>
         </th>
         <th>
             <#if thursdayFive??>
-            <@inside.inside times = thursdayFive />
+            <@inside.inside times = thursdayFive flag = THURSDAY />
         </#if>
         </th>
         <th>
             <#if fridayFive??>
-            <@inside.inside times = fridayFive />
+            <@inside.inside times = fridayFive flag = FRIDAY />
         </#if>
         </th>
         <th>
             <#if saturdayFive??>
-            <@inside.inside times = saturdayFive />
+            <@inside.inside times = saturdayFive flag = SATURDAY  />
         </#if>
         </th>
         <th>
             <#if sundayFive??>
-            <@inside.inside times = sundayFive />
+            <@inside.inside times = sundayFive flag = SUNDAY />
         </#if>
         </th>
         <th></th>
@@ -336,37 +336,37 @@
         <#if six??>
         <th>
             <#if mondaySix??>
-            <@inside.inside times = mondaySix />
+            <@inside.inside times = mondaySix flag = MONDAY />
         </#if>
         </th>
         <th>
             <#if tuesdaySix??>
-            <@inside.inside times = tuesdaySix />
+            <@inside.inside times = tuesdaySix flag = TUESDAY />
         </#if>
         </th>
         <th>
             <#if wednesdaySix??>
-            <@inside.inside times = wednesdaySix />
+            <@inside.inside times = wednesdaySix flag = WEDNESDAY />
         </#if>
         </th>
         <th>
             <#if thursdaySix??>
-            <@inside.inside times = thursdaySix />
+            <@inside.inside times = thursdaySix flag = THURSDAY />
         </#if>
         </th>
         <th>
             <#if fridaySix??>
-            <@inside.inside times = fridaySix />
+            <@inside.inside times = fridaySix flag = FRIDAY />
         </#if>
         </th>
         <th>
             <#if saturdaySix??>
-            <@inside.inside times = saturdaySix />
+            <@inside.inside times = saturdaySix flag = SATURDAY  />
         </#if>
         </th>
         <th>
             <#if sundaySix??>
-            <@inside.inside times = sundaySix />
+            <@inside.inside times = sundaySix flag = SUNDAY />
         </#if>
         </th>
         <th></th>
@@ -379,37 +379,37 @@
         <#if seven??>
         <th>
             <#if mondaySeven??>
-            <@inside.inside times = mondaySeven />
+            <@inside.inside times = mondaySeven flag = MONDAY />
         </#if>
         </th>
         <th>
             <#if tuesdaySeven??>
-            <@inside.inside times = tuesdaySeven />
+            <@inside.inside times = tuesdaySeven flag = TUESDAY />
         </#if>
         </th>
         <th>
             <#if wednesdaySeven??>
-            <@inside.inside times = wednesdaySeven />
+            <@inside.inside times = wednesdaySeven flag = WEDNESDAY />
         </#if>
         </th>
         <th>
             <#if thursdaySeven??>
-            <@inside.inside times = thursdaySeven />
+            <@inside.inside times = thursdaySeven flag = THURSDAY />
         </#if>
         </th>
         <th>
             <#if fridaySeven??>
-            <@inside.inside times = fridaySeven />
+            <@inside.inside times = fridaySeven flag = FRIDAY />
         </#if>
         </th>
         <th>
             <#if saturdaySeven??>
-            <@inside.inside times = saturdaySeven />
+            <@inside.inside times = saturdaySeven flag = SATURDAY  />
         </#if>
         </th>
         <th>
             <#if sundaySeven??>
-            <@inside.inside times = sundaySeven />
+            <@inside.inside times = sundaySeven flag = SUNDAY />
         </#if>
         </th>
         <th></th>
@@ -422,37 +422,37 @@
         <#if eight??>
         <th>
             <#if mondayEight??>
-            <@inside.inside times = mondayEight />
+            <@inside.inside times = mondayEight flag = MONDAY />
         </#if>
         </th>
         <th>
             <#if tuesdayEight??>
-            <@inside.inside times = tuesdayEight />
+            <@inside.inside times = tuesdayEight flag = TUESDAY />
         </#if>
         </th>
         <th>
             <#if wednesdayEight??>
-            <@inside.inside times = wednesdayEight />
+            <@inside.inside times = wednesdayEight flag = WEDNESDAY />
         </#if>
         </th>
         <th>
             <#if thursdayEight??>
-            <@inside.inside times = thursdayEight />
+            <@inside.inside times = thursdayEight flag = THURSDAY />
         </#if>
         </th>
         <th>
             <#if fridayEight??>
-            <@inside.inside times = fridayEight />
+            <@inside.inside times = fridayEight flag = FRIDAY />
         </#if>
         </th>
         <th>
             <#if saturdayEight??>
-            <@inside.inside times = saturdayEight />
+            <@inside.inside times = saturdayEight flag = SATURDAY  />
         </#if>
         </th>
         <th>
             <#if sundayEight??>
-            <@inside.inside times = sundayEight />
+            <@inside.inside times = sundayEight flag = SUNDAY />
         </#if>
         </th>
         <th></th>
@@ -465,37 +465,37 @@
         <#if nine??>
         <th>
             <#if mondayNine??>
-            <@inside.inside times = mondayNine />
+            <@inside.inside times = mondayNine flag = MONDAY />
         </#if>
         </th>
         <th>
             <#if tuesdayNine??>
-            <@inside.inside times = tuesdayNine />
+            <@inside.inside times = tuesdayNine flag = TUESDAY />
         </#if>
         </th>
         <th>
             <#if wednesdayNine??>
-            <@inside.inside times = wednesdayNine />
+            <@inside.inside times = wednesdayNine flag = WEDNESDAY />
         </#if>
         </th>
         <th>
             <#if thursdayNine??>
-            <@inside.inside times = thursdayNine />
+            <@inside.inside times = thursdayNine flag = THURSDAY />
         </#if>
         </th>
         <th>
             <#if fridayNine??>
-            <@inside.inside times = fridayNine />
+            <@inside.inside times = fridayNine flag = FRIDAY />
         </#if>
         </th>
         <th>
             <#if saturdayNine??>
-            <@inside.inside times = saturdayNine />
+            <@inside.inside times = saturdayNine flag = SATURDAY  />
         </#if>
         </th>
         <th>
             <#if sundayNine??>
-            <@inside.inside times = sundayNine />
+            <@inside.inside times = sundayNine flag = SUNDAY />
         </#if>
         </th>
         <th></th>
@@ -508,37 +508,37 @@
         <#if ten??>
         <th>
             <#if mondayTen??>
-            <@inside.inside times = mondayTen />
+            <@inside.inside times = mondayTen flag = MONDAY />
         </#if>
         </th>
         <th>
             <#if tuesdayTen??>
-            <@inside.inside times = tuesdayTen />
+            <@inside.inside times = tuesdayTen flag = TUESDAY />
         </#if>
         </th>
         <th>
             <#if wednesdayTen??>
-            <@inside.inside times = wednesdayTen />
+            <@inside.inside times = wednesdayTen flag = WEDNESDAY />
         </#if>
         </th>
         <th>
             <#if thursdayTen??>
-            <@inside.inside times = thursdayTen />
+            <@inside.inside times = thursdayTen flag = THURSDAY />
         </#if>
         </th>
         <th>
             <#if fridayTen??>
-            <@inside.inside times = fridayTen />
+            <@inside.inside times = fridayTen flag = FRIDAY />
         </#if>
         </th>
         <th>
             <#if saturdayTen??>
-            <@inside.inside times = saturdayTen />
+            <@inside.inside times = saturdayTen flag = SATURDAY  />
         </#if>
         </th>
         <th>
             <#if sundayTen??>
-            <@inside.inside times = sundayTen />
+            <@inside.inside times = sundayTen flag = SUNDAY />
         </#if>
         </th>
         <th></th>
@@ -551,37 +551,37 @@
         <#if eleven??>
         <th>
             <#if mondayEleven??>
-            <@inside.inside times = mondayEleven />
+            <@inside.inside times = mondayEleven flag = MONDAY />
         </#if>
         </th>
         <th>
             <#if tuesdayEleven??>
-            <@inside.inside times = tuesdayEleven />
+            <@inside.inside times = tuesdayEleven flag = TUESDAY />
         </#if>
         </th>
         <th>
             <#if wednesdayEleven??>
-            <@inside.inside times = wednesdayEleven />
+            <@inside.inside times = wednesdayEleven flag = WEDNESDAY />
         </#if>
         </th>
         <th>
             <#if thursdayEleven??>
-            <@inside.inside times = thursdayEleven />
+            <@inside.inside times = thursdayEleven flag = THURSDAY />
         </#if>
         </th>
         <th>
             <#if fridayEleven??>
-            <@inside.inside times = fridayEleven />
+            <@inside.inside times = fridayEleven flag = FRIDAY />
         </#if>
         </th>
         <th>
             <#if saturdayEleven??>
-            <@inside.inside times = saturdayEleven />
+            <@inside.inside times = saturdayEleven flag = SATURDAY  />
         </#if>
         </th>
         <th>
             <#if sundayEleven??>
-            <@inside.inside times = sundayEleven />
+            <@inside.inside times = sundayEleven flag = SUNDAY />
         </#if>
         </th>
         <th></th>
@@ -594,37 +594,37 @@
         <#if twelve??>
         <th>
             <#if mondayTwelve??>
-            <@inside.inside times = mondayTwelve />
+            <@inside.inside times = mondayTwelve flag = MONDAY />
         </#if>
         </th>
         <th>
             <#if tuesdayTwelve??>
-            <@inside.inside times = tuesdayTwelve />
+            <@inside.inside times = tuesdayTwelve flag = TUESDAY />
         </#if>
         </th>
         <th>
             <#if wednesdayTwelve??>
-            <@inside.inside times = wednesdayTwelve />
+            <@inside.inside times = wednesdayTwelve flag = WEDNESDAY />
         </#if>
         </th>
         <th>
             <#if thursdayTwelve??>
-            <@inside.inside times = thursdayTwelve />
+            <@inside.inside times = thursdayTwelve flag = THURSDAY />
         </#if>
         </th>
         <th>
             <#if fridayTwelve??>
-            <@inside.inside times = fridayTwelve />
+            <@inside.inside times = fridayTwelve flag = FRIDAY />
         </#if>
         </th>
         <th>
             <#if saturdayTwelve??>
-            <@inside.inside times = saturdayTwelve />
+            <@inside.inside times = saturdayTwelve flag = SATURDAY  />
         </#if>
         </th>
         <th>
             <#if sundayTwelve??>
-            <@inside.inside times = sundayTwelve />
+            <@inside.inside times = sundayTwelve flag = SUNDAY />
         </#if>
         </th>
         <th></th>
@@ -637,37 +637,37 @@
         <#if thirteen??>
         <th>
             <#if mondayThirteen??>
-            <@inside.inside times = mondayThirteen />
+            <@inside.inside times = mondayThirteen flag = MONDAY />
         </#if>
         </th>
         <th>
             <#if tuesdayThirteen??>
-            <@inside.inside times = tuesdayThirteen />
+            <@inside.inside times = tuesdayThirteen flag = TUESDAY />
         </#if>
         </th>
         <th>
             <#if wednesdayThirteen??>
-            <@inside.inside times = wednesdayThirteen />
+            <@inside.inside times = wednesdayThirteen flag = WEDNESDAY />
         </#if>
         </th>
         <th>
             <#if thursdayThirteen??>
-            <@inside.inside times = thursdayThirteen />
+            <@inside.inside times = thursdayThirteen flag = THURSDAY />
         </#if>
         </th>
         <th>
             <#if fridayThirteen??>
-            <@inside.inside times = fridayThirteen />
+            <@inside.inside times = fridayThirteen flag = FRIDAY />
         </#if>
         </th>
         <th>
             <#if saturdayThirteen??>
-            <@inside.inside times = saturdayThirteen />
+            <@inside.inside times = saturdayThirteen flag = SATURDAY  />
         </#if>
         </th>
         <th>
             <#if sundayThirteen??>
-            <@inside.inside times = sundayThirteen />
+            <@inside.inside times = sundayThirteen flag = SUNDAY />
         </#if>
         </th>
         <th></th>
@@ -680,37 +680,37 @@
         <#if fourteen??>
         <th>
             <#if mondayFourteen??>
-            <@inside.inside times = mondayFourteen />
+            <@inside.inside times = mondayFourteen flag = MONDAY />
         </#if>
         </th>
         <th>
             <#if tuesdayFourteen??>
-            <@inside.inside times = tuesdayFourteen />
+            <@inside.inside times = tuesdayFourteen flag = TUESDAY />
         </#if>
         </th>
         <th>
             <#if wednesdayFourteen??>
-            <@inside.inside times = wednesdayFourteen />
+            <@inside.inside times = wednesdayFourteen flag = WEDNESDAY />
         </#if>
         </th>
         <th>
             <#if thursdayFourteen??>
-            <@inside.inside times = thursdayFourteen />
+            <@inside.inside times = thursdayFourteen flag = THURSDAY />
         </#if>
         </th>
         <th>
             <#if fridayFourteen??>
-            <@inside.inside times = fridayFourteen />
+            <@inside.inside times = fridayFourteen flag = FRIDAY />
         </#if>
         </th>
         <th>
             <#if saturdayFourteen??>
-            <@inside.inside times = saturdayFourteen />
+            <@inside.inside times = saturdayFourteen flag = SATURDAY  />
         </#if>
         </th>
         <th>
             <#if sundayFourteen??>
-            <@inside.inside times = sundayFourteen />
+            <@inside.inside times = sundayFourteen flag = SUNDAY />
         </#if>
         </th>
         <th></th>
@@ -723,37 +723,37 @@
         <#if fifteen??>
         <th>
             <#if mondayFifteen??>
-            <@inside.inside times = mondayFifteen />
+            <@inside.inside times = mondayFifteen flag = MONDAY />
         </#if>
         </th>
         <th>
             <#if tuesdayFifteen??>
-            <@inside.inside times = tuesdayFifteen />
+            <@inside.inside times = tuesdayFifteen flag = TUESDAY />
         </#if>
         </th>
         <th>
             <#if wednesdayFifteen??>
-            <@inside.inside times = wednesdayFifteen />
+            <@inside.inside times = wednesdayFifteen flag = WEDNESDAY />
         </#if>
         </th>
         <th>
             <#if thursdayFifteen??>
-            <@inside.inside times = thursdayFifteen />
+            <@inside.inside times = thursdayFifteen flag = THURSDAY />
         </#if>
         </th>
         <th>
             <#if fridayFifteen??>
-            <@inside.inside times = fridayFifteen />
+            <@inside.inside times = fridayFifteen flag = FRIDAY />
         </#if>
         </th>
         <th>
             <#if saturdayFifteen??>
-            <@inside.inside times = saturdayFifteen />
+            <@inside.inside times = saturdayFifteen flag = SATURDAY  />
         </#if>
         </th>
         <th>
             <#if sundayFifteen??>
-            <@inside.inside times = sundayFifteen />
+            <@inside.inside times = sundayFifteen flag = SUNDAY />
         </#if>
         </th>
         <th></th>
@@ -766,37 +766,37 @@
         <#if sixteen??>
         <th>
             <#if mondaySixteen??>
-            <@inside.inside times = mondaySixteen />
+            <@inside.inside times = mondaySixteen flag = MONDAY />
         </#if>
         </th>
         <th>
             <#if tuesdaySixteen??>
-            <@inside.inside times = tuesdaySixteen />
+            <@inside.inside times = tuesdaySixteen flag = TUESDAY />
         </#if>
         </th>
         <th>
             <#if wednesdaySixteen??>
-            <@inside.inside times = wednesdaySixteen />
+            <@inside.inside times = wednesdaySixteen flag = WEDNESDAY />
         </#if>
         </th>
         <th>
             <#if thursdaySixteen??>
-            <@inside.inside times = thursdaySixteen />
+            <@inside.inside times = thursdaySixteen flag = THURSDAY />
         </#if>
         </th>
         <th>
             <#if fridaySixteen??>
-            <@inside.inside times = fridaySixteen />
+            <@inside.inside times = fridaySixteen flag = FRIDAY />
         </#if>
         </th>
         <th>
             <#if saturdaySixteen??>
-            <@inside.inside times = saturdaySixteen />
+            <@inside.inside times = saturdaySixteen flag = SATURDAY  />
         </#if>
         </th>
         <th>
             <#if sundaySixteen??>
-            <@inside.inside times = sundaySixteen />
+            <@inside.inside times = sundaySixteen flag = SUNDAY />
         </#if>
         </th>
         <th></th>
@@ -809,37 +809,37 @@
         <#if seventeen??>
         <th>
             <#if mondaySeven??>
-            <@inside.inside times = mondaySeventeen />
+            <@inside.inside times = mondaySeventeen flag = MONDAY />
         </#if>
         </th>
         <th>
             <#if tuesdaySeventeen??>
-            <@inside.inside times = tuesdaySeventeen />
+            <@inside.inside times = tuesdaySeventeen flag = TUESDAY />
         </#if>
         </th>
         <th>
             <#if wednesdaySeventeen??>
-            <@inside.inside times = wednesdaySeventeen />
+            <@inside.inside times = wednesdaySeventeen flag = WEDNESDAY />
         </#if>
         </th>
         <th>
             <#if thursdaySeventeen??>
-            <@inside.inside times = thursdaySeventeen />
+            <@inside.inside times = thursdaySeventeen flag = THURSDAY />
         </#if>
         </th>
         <th>
             <#if fridaySeventeen??>
-            <@inside.inside times = fridaySeventeen />
+            <@inside.inside times = fridaySeventeen flag = FRIDAY />
         </#if>
         </th>
         <th>
             <#if saturdaySeventeen??>
-            <@inside.inside times = saturdaySeventeen />
+            <@inside.inside times = saturdaySeventeen flag = SATURDAY  />
         </#if>
         </th>
         <th>
             <#if sundaySeventeen??>
-            <@inside.inside times = sundaySeventeen />
+            <@inside.inside times = sundaySeventeen flag = SUNDAY />
         </#if>
         </th>
         <th></th>
@@ -852,37 +852,37 @@
         <#if eighteen??>
         <th>
             <#if mondayEighteen??>
-            <@inside.inside times = mondayEighteen />
+            <@inside.inside times = mondayEighteen flag = MONDAY />
         </#if>
         </th>
         <th>
             <#if tuesdayEighteen??>
-            <@inside.inside times = tuesdayEighteen />
+            <@inside.inside times = tuesdayEighteen flag = TUESDAY />
         </#if>
         </th>
         <th>
             <#if wednesdayEighteen??>
-            <@inside.inside times = wednesdayEighteen />
+            <@inside.inside times = wednesdayEighteen flag = WEDNESDAY />
         </#if>
         </th>
         <th>
             <#if thursdayEighteen??>
-            <@inside.inside times = thursdayEighteen />
+            <@inside.inside times = thursdayEighteen flag = THURSDAY />
         </#if>
         </th>
         <th>
             <#if fridayEighteen??>
-            <@inside.inside times = fridayEighteen />
+            <@inside.inside times = fridayEighteen flag = FRIDAY />
         </#if>
         </th>
         <th>
             <#if saturdayEighteen??>
-            <@inside.inside times = saturdayEighteen />
+            <@inside.inside times = saturdayEighteen flag = SATURDAY  />
         </#if>
         </th>
         <th>
             <#if sundayEighteen??>
-            <@inside.inside times = sundayEighteen />
+            <@inside.inside times = sundayEighteen flag = SUNDAY />
         </#if>
         </th>
         <th></th>
@@ -895,37 +895,37 @@
         <#if nineteen??>
         <th>
             <#if mondayNineteen??>
-            <@inside.inside times = mondayNineteen />
+            <@inside.inside times = mondayNineteen flag = MONDAY />
         </#if>
         </th>
         <th>
             <#if tuesdayNineteen??>
-            <@inside.inside times = tuesdayNineteen />
+            <@inside.inside times = tuesdayNineteen flag = TUESDAY />
         </#if>
         </th>
         <th>
             <#if wednesdayNineteen??>
-            <@inside.inside times = wednesdayNineteen />
+            <@inside.inside times = wednesdayNineteen flag = WEDNESDAY />
         </#if>
         </th>
         <th>
             <#if thursdayNineteen??>
-            <@inside.inside times = thursdayNineteen />
+            <@inside.inside times = thursdayNineteen flag = THURSDAY />
         </#if>
         </th>
         <th>
             <#if fridayNineteen??>
-            <@inside.inside times = fridayNineteen />
+            <@inside.inside times = fridayNineteen flag = FRIDAY />
         </#if>
         </th>
         <th>
             <#if saturdayNineteen??>
-            <@inside.inside times = saturdayNineteen />
+            <@inside.inside times = saturdayNineteen flag = SATURDAY  />
         </#if>
         </th>
         <th>
             <#if sundayNineteen??>
-            <@inside.inside times = sundayNineteen />
+            <@inside.inside times = sundayNineteen flag = SUNDAY />
         </#if>
         </th>
         <th></th>
@@ -938,37 +938,37 @@
         <#if twenty??>
         <th>
             <#if mondayTwenty??>
-            <@inside.inside times = mondayTwenty />
+            <@inside.inside times = mondayTwenty flag = MONDAY />
         </#if>
         </th>
         <th>
             <#if tuesdayTwenty??>
-            <@inside.inside times = tuesdayTwenty />
+            <@inside.inside times = tuesdayTwenty flag = TUESDAY />
         </#if>
         </th>
         <th>
             <#if wednesdayTwenty??>
-            <@inside.inside times = wednesdayTwenty />
+            <@inside.inside times = wednesdayTwenty flag = WEDNESDAY />
         </#if>
         </th>
         <th>
             <#if thursdayTwenty??>
-            <@inside.inside times = thursdayTwenty />
+            <@inside.inside times = thursdayTwenty flag = THURSDAY />
         </#if>
         </th>
         <th>
             <#if fridayTwenty??>
-            <@inside.inside times = fridayTwenty />
+            <@inside.inside times = fridayTwenty flag = FRIDAY />
         </#if>
         </th>
         <th>
             <#if saturdayTwenty??>
-            <@inside.inside times = saturdayTwenty />
+            <@inside.inside times = saturdayTwenty flag = SATURDAY  />
         </#if>
         </th>
         <th>
             <#if sundayTwenty??>
-            <@inside.inside times = sundayTwenty />
+            <@inside.inside times = sundayTwenty flag = SUNDAY />
         </#if>
         </th>
         <th></th>
@@ -981,37 +981,37 @@
         <#if twentyOne??>
         <th>
             <#if mondayTwentyOne??>
-            <@inside.inside times = mondayTwentyOne />
+            <@inside.inside times = mondayTwentyOne flag = MONDAY />
         </#if>
         </th>
         <th>
             <#if tuesdayTwentyOne??>
-            <@inside.inside times = tuesdayTwentyOne />
+            <@inside.inside times = tuesdayTwentyOne flag = TUESDAY />
         </#if>
         </th>
         <th>
             <#if wednesdayTwentyOne??>
-            <@inside.inside times = wednesdayTwentyOne />
+            <@inside.inside times = wednesdayTwentyOne flag = WEDNESDAY />
         </#if>
         </th>
         <th>
             <#if thursdayTwentyOne??>
-            <@inside.inside times = thursdayTwentyOne />
+            <@inside.inside times = thursdayTwentyOne flag = THURSDAY />
         </#if>
         </th>
         <th>
             <#if fridayTwentyOne??>
-            <@inside.inside times = fridayTwentyOne />
+            <@inside.inside times = fridayTwentyOne flag = FRIDAY />
         </#if>
         </th>
         <th>
             <#if saturdayTwentyOne??>
-            <@inside.inside times = saturdayTwentyOne />
+            <@inside.inside times = saturdayTwentyOne flag = SATURDAY  />
         </#if>
         </th>
         <th>
             <#if sundayTwentyOne??>
-            <@inside.inside times = sundayTwentyOne />
+            <@inside.inside times = sundayTwentyOne flag = SUNDAY />
         </#if>
         </th>
         <th></th>
@@ -1024,37 +1024,37 @@
         <#if twentyTwo??>
         <th>
             <#if mondayTwentyTwo??>
-            <@inside.inside times = mondayTwentyTwo />
+            <@inside.inside times = mondayTwentyTwo flag = MONDAY />
         </#if>
         </th>
         <th>
             <#if tuesdayTwentyTwo??>
-            <@inside.inside times = tuesdayTwentyTwo />
+            <@inside.inside times = tuesdayTwentyTwo flag = TUESDAY />
         </#if>
         </th>
         <th>
             <#if wednesdayTwentyTwo??>
-            <@inside.inside times = wednesdayTwentyTwo />
+            <@inside.inside times = wednesdayTwentyTwo flag = WEDNESDAY />
         </#if>
         </th>
         <th>
             <#if thursdayTwentyTwo??>
-            <@inside.inside times = thursdayTwentyTwo />
+            <@inside.inside times = thursdayTwentyTwo flag = THURSDAY />
         </#if>
         </th>
         <th>
             <#if fridayTwentyTwo??>
-            <@inside.inside times = fridayTwentyTwo/>
+            <@inside.inside times = fridayTwentyTwo flag = FRIDAY/>
         </#if>
         </th>
         <th>
             <#if saturdayTwentyTwo??>
-            <@inside.inside times = saturdayTwentyTwo />
+            <@inside.inside times = saturdayTwentyTwo flag = SATURDAY  />
         </#if>
         </th>
         <th>
             <#if sundayTwentyTwo??>
-            <@inside.inside times = sundayTwentyTwo />
+            <@inside.inside times = sundayTwentyTwo flag = SUNDAY />
         </#if>
         </th>
         <th></th>
@@ -1067,37 +1067,37 @@
         <#if twentyThree??>
         <th>
             <#if mondayTwentyThree??>
-            <@inside.inside times = mondayTwentyThree />
+            <@inside.inside times = mondayTwentyThree flag = MONDAY />
         </#if>
         </th>
         <th>
             <#if tuesdayTwentyThree??>
-            <@inside.inside times = tuesdayTwentyThree />
+            <@inside.inside times = tuesdayTwentyThree flag = TUESDAY />
         </#if>
         </th>
         <th>
             <#if wednesdayTwentyThree??>
-            <@inside.inside times = wednesdayTwentyThree />
+            <@inside.inside times = wednesdayTwentyThree flag = WEDNESDAY />
         </#if>
         </th>
         <th>
             <#if thursdayTwentyThree??>
-            <@inside.inside times = thursdayTwentyThree />
+            <@inside.inside times = thursdayTwentyThree flag = THURSDAY />
         </#if>
         </th>
         <th>
             <#if fridayTwentyThree??>
-            <@inside.inside times = fridayTwentyThree/>
+            <@inside.inside times = fridayTwentyThree flag = FRIDAY />
         </#if>
         </th>
         <th>
             <#if saturdayTwentyThree??>
-            <@inside.inside times = saturdayTwentyThree />
+            <@inside.inside times = saturdayTwentyThree flag = SATURDAY  />
         </#if>
         </th>
         <th>
             <#if sundayTwentyThree??>
-            <@inside.inside times = sundayTwentyThree />
+            <@inside.inside times = sundayTwentyThree flag = SUNDAY />
         </#if>
         </th>
         <th></th>

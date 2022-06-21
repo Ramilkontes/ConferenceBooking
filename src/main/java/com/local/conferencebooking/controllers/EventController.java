@@ -67,7 +67,6 @@ public class EventController {
             User user = userService.findOneByLogin(request.getUserPrincipal().getName());
             Event event = service.createEvent(eventForm);
             roomService.saveIds(event.getId(), user.getId());
-            model.addAttribute("success", true);
             model.addAttribute("event", event);
             model.addAttribute("form", null);
             model.addAttribute("engagedTime", null);

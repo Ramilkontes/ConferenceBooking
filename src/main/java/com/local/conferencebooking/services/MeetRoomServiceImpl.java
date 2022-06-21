@@ -32,6 +32,9 @@ public class MeetRoomServiceImpl implements MeetRoomService {
     @Autowired
     private ServiceClassForDate classForDate;
 
+    @Autowired
+    private UserService userService;
+
     @Override
     public List<User> getAllPeople() {
         return userRepositories.findAll();
@@ -69,6 +72,7 @@ public class MeetRoomServiceImpl implements MeetRoomService {
     @Override
     public void getModels(Model model, List<LocalDate> week) {
         List<Event> currentEvents = getCurrentEvent(week);
+        model.addAllAttributes(userService.getFlagsByDays(week));
         model.addAllAttributes(getEventsByTime(currentEvents));
         model.addAllAttributes(getEventsByDay(week, currentEvents));
     }

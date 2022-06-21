@@ -1,15 +1,16 @@
 <#import "parts/common.ftl" as c>
 <#import "parts/calendar.ftl" as cal>
 <@c.page>
-<!--<div class="form-row">
-    <div class="form-group col-md-6">
-        <form method="get" action="/main" class="form-inline">
-            <input type="text" name="filter" class="form-control" value="${filter?ifExists}"
-                   placeholder="Search by tag">
-            <button type="submit" class="btn btn-primary ml-2">Search</button>
-        </form>
-    </div>
-</div>-->
+
+<#if eventIsExist??>
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
+    <strong>Sorry, but you have already registered at this event</strong>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+</#if>
+
 <@cal.calendar />
 
 <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false"
@@ -19,7 +20,7 @@
 
 <div class="collapse <#if form?? || engagedTime?? || notCorrectness??>show</#if>" id="collapseExample">
     <div class="form-group mt-3">
-        <form method="post" action="\events">
+        <form method="post" id="createEvent" action="\events">
             <div class="form-group">
                 <input type="text" class="form-control ${(nameError??)?string('is-invalid', '')}"
                        value="<#if form??>${form.name}</#if>" name="name" placeholder="Enter the name"/>

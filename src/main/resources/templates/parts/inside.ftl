@@ -1,4 +1,6 @@
-<#macro inside times>
+<#include "security.ftl">
+
+<#macro inside times flag>
 
 <#if times?size==2>
 <table>
@@ -27,6 +29,17 @@
     <p><small>Event name: ${time.name}</small></p>
     <p><small>Time start: ${time.dateStart}</small></p>
     <p><small>Time finish: ${time.dateFinish}</small></p>
+
+    <#if flag>
+    <form action="\users\${id}" method="post" id="joinToRoom">
+        <div class="form-group">
+            <input type="hidden" value="${time.dateStart}" name="date">
+        </div>
+        <div class="form-group">
+            <button button type="submit" class="btn  btn-outline-primary">Join</button>
+        </div>
+    </form>
+    </#if>
 </#list>
 </div>
 </#if>
