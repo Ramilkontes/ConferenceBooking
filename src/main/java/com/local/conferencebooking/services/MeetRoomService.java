@@ -19,8 +19,6 @@ public interface MeetRoomService {
 
     void saveIds(Long eventId, Long userId);
 
-    Event findNewEvent(Long userId);
-
     List<LocalDate> getWeek(LocalDate date);
 
     List<LocalDate> getRequiredWeek(LocalDate day, Integer pointer);

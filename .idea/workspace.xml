@@ -4,22 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c6e66d34-137b-44e8-979e-756b0cee06aa" name="Default Changelist" comment="Added My concernments at the navbar, errors about engaged and duration events">
+    <list default="true" id="c6e66d34-137b-44e8-979e-756b0cee06aa" name="Default Changelist" comment="Added joining to event at present and future">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/local/conferencebooking/controllers/EventController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/conferencebooking/controllers/EventController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/local/conferencebooking/controllers/MeetRoomController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/conferencebooking/controllers/MeetRoomController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/conferencebooking/controllers/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/conferencebooking/controllers/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/conferencebooking/forms/EventFormToFindByDate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/conferencebooking/forms/EventFormToFindByDate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/conferencebooking/security/config/MvcConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/conferencebooking/mvcconfigure/MvcConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/conferencebooking/services/EventService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/conferencebooking/services/EventService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/local/conferencebooking/services/EventServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/conferencebooking/services/EventServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/conferencebooking/services/MeetRoomService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/conferencebooking/services/MeetRoomService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/local/conferencebooking/services/MeetRoomServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/conferencebooking/services/MeetRoomServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/conferencebooking/services/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/conferencebooking/services/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/conferencebooking/services/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/conferencebooking/services/UserServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/event.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/event.ftl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/meet-room.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/meet-room.ftl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/myConcernments.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/myConcernments.ftl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/parts/calendar.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/parts/calendar.ftl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/parts/common.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/parts/common.ftl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/parts/inside.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/parts/inside.ftl" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,7 +34,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="version1" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />

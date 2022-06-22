@@ -13,9 +13,9 @@ public interface EventService {
 
     Event updateEvent(Long id, EventFormToCreateOrUpdate updateForm);
 
-    Event deleteEvent(Long id);
-
     Event checkingEvent(LocalDateTime date);
 
-    boolean checking (EventFormToCreateOrUpdate eventForm, Model model);
+    boolean checkingForCreate(EventFormToCreateOrUpdate eventForm, Model model);
+
+    boolean checkingForUpdate(EventFormToCreateOrUpdate eventForm, Model model);
 }

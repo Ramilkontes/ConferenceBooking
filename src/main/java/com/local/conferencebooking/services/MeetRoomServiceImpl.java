@@ -72,6 +72,7 @@ public class MeetRoomServiceImpl implements MeetRoomService {
     @Override
     public void getModels(Model model, List<LocalDate> week) {
         List<Event> currentEvents = getCurrentEvent(week);
+        model.addAttribute("week", week);
         model.addAllAttributes(userService.getFlagsByDays(week));
         model.addAllAttributes(getEventsByTime(currentEvents));
         model.addAllAttributes(getEventsByDay(week, currentEvents));

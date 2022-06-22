@@ -60,7 +60,6 @@ public class MeetRoomController {
             week = service.getWeek(LocalDate.now());
             classForDate.updateDate(1L, week.get(0));
         }
-        model.addAttribute("week", week);
         service.getModels(model, week);
         return "meet-room";
     }
@@ -69,7 +68,6 @@ public class MeetRoomController {
     @PostMapping("/")
     public String getPreviousOrNextWeek(@RequestParam Integer pointer, Model model) {
         List<LocalDate> week = service.getRequiredWeek(classForDate.getDate(1L), pointer);
-        model.addAttribute("week", week);
         model.addAttribute("mark", true);
         service.getModels(model, week);
         return "meet-room";

@@ -7,14 +7,13 @@ import com.local.conferencebooking.services.EventService;
 import com.local.conferencebooking.services.MeetRoomService;
 import com.local.conferencebooking.services.ServiceClassForDate;
 import com.local.conferencebooking.services.UserService;
-import com.local.conferencebooking.transfer.EventDto;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -22,8 +21,6 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
-
-import static com.local.conferencebooking.transfer.EventDto.from;
 
 @Controller
 @RequestMapping("/events")
@@ -41,26 +38,14 @@ public class EventController {
     @Autowired
     private ServiceClassForDate classForDate;
 
-
-    @GetMapping()
-    public String getInfo(HttpServletRequest request, Model model) {
-        if (request.getParameterMap().containsKey("error")) {
-            model.addAttribute("error", true);
-            return "meet-room";
-        }
-        return "event";
-    }
-
-
     @PostMapping()
     public String createEvent(@Valid EventFormToCreateOrUpdate eventForm, BindingResult bindingResult,
                               Model model, HttpServletRequest request) {
         if (bindingResult.hasErrors()) {
-            Map<String, String> errorsMap = ControllerUtils.getErrors(bindingResult);
-            model.addAllAttributes(errorsMap);
+            getErrorsMap(bindingResult, model);
             getMainPage(eventForm, model);
             return "meet-room";
-        } else if (!service.checking(eventForm, model)) {
+        } else if (!service.checkingForCreate(eventForm, model)) {
             getMainPage(eventForm, model);
             return "meet-room";
         } else {
@@ -69,10 +54,31 @@ public class EventController {
             roomService.saveIds(event.getId(), user.getId());
             model.addAttribute("event", event);
             model.addAttribute("form", null);
-            model.addAttribute("engagedTime", null);
-            model.addAttribute("notCorrectness", null);
             return "event";
         }
+    }
+
+    @PostMapping("/{id}")
+    public String updateInformation(@PathVariable Long id,
+                                    @Valid EventFormToCreateOrUpdate eventForm, BindingResult bindingResult,
+                                    Model model) {
+        if (bindingResult.hasErrors()) {
+            getErrorsMap(bindingResult, model);
+            model.addAttribute("form", eventForm);
+            model.addAttribute("event", service.getOne(id));
+            return "event";
+        } else if (!service.checkingForUpdate(eventForm, model)) {
+            model.addAttribute("event", service.getOne(id));
+            return "event";
+        }
+        Event event = service.updateEvent(id, eventForm);
+        model.addAttribute("event", event);
+        return "eventEdit";
+    }
+
+    private void getErrorsMap(BindingResult bindingResult, Model model) {
+        Map<String, String> errorsMap = ControllerUtils.getErrors(bindingResult);
+        model.addAllAttributes(errorsMap);
     }
 
     private void getMainPage(EventFormToCreateOrUpdate eventForm, Model model) {
@@ -80,48 +86,6 @@ public class EventController {
         model.addAttribute("dateStart", LocalDateTime.now());
         model.addAttribute("dateFinish", LocalDateTime.now());
         List<LocalDate> week = roomService.getWeek(classForDate.getDate(1L));
-        model.addAttribute("week", week);
         roomService.getModels(model, week);
-    }
-
-    @GetMapping("/{id}")
-    public String getEditForm() {
-        return "eventEdit";
-    }
-
-    @PostMapping("/{id}")
-    public String updateInformation(@PathVariable Long id,
-                                    @Valid EventFormToCreateOrUpdate eventForm, BindingResult bindingResult,
-                                    Model model, HttpServletRequest request) {
-        Event event = saveUpdate(id, eventForm);
-        model.addAttribute("event", event);
-        return "eventEdit";
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<EventDto> deleteRoom(@PathVariable Long id) {
-        if (checkForExists(id) == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        return new ResponseEntity<>(from(service.deleteEvent(id)), HttpStatus.OK);
-    }
-
-    private Event checkForExists(Long id) {
-        return service.getOne(id);
-    }
-
-    private Event saveUpdate(Long eventId, EventFormToCreateOrUpdate updateForm) {
-        return service.updateEvent(eventId, updateForm);
-
-    }
-
-    private EventFormToCreateOrUpdate getEventFormToUpdate(String name, LocalDateTime dateStart, LocalDateTime
-            dateFinish) {
-        EventFormToCreateOrUpdate updating = EventFormToCreateOrUpdate.builder()
-                .name(name)
-                .dateStart(dateStart)
-                .dateFinish(dateFinish)
-                .build();
-        return updating;
     }
 }
