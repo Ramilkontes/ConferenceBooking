@@ -1,9 +1,7 @@
 package com.local.conferencebooking.controllers;
 
-import com.local.conferencebooking.security.details.UserDetailsImpl;
 import com.local.conferencebooking.services.MeetRoomService;
 import com.local.conferencebooking.services.ServiceClassForDate;
-import com.local.conferencebooking.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -24,9 +22,6 @@ public class MeetRoomController {
 
     @Autowired
     private ServiceClassForDate classForDate;
-
-    @Autowired
-    private UserService userService;
 
     @GetMapping("/meet-room/people")
     public String getAllPeople(Model model) {
@@ -51,7 +46,6 @@ public class MeetRoomController {
         if (authentication == null) {
             return "redirect:/login";
         }
-  //      UserDetailsImpl details = (UserDetailsImpl) authentication.getPrincipal();
         List<LocalDate> week;
         if (model.containsAttribute("mark")) {
             week = service.getWeek(classForDate.getDate(1L));
@@ -63,7 +57,6 @@ public class MeetRoomController {
         service.getModels(model, week);
         return "meet-room";
     }
-
 
     @PostMapping("/")
     public String getPreviousOrNextWeek(@RequestParam Integer pointer, Model model) {

@@ -11,13 +11,8 @@ import java.util.List;
 import java.util.Map;
 
 public interface UserService {
-    List<User> findAll();
-
-    User findOne(Long id);
 
     User findOneByLogin(String login);
-
-    User updateUser(Long id, UserForm updateForm);
 
     void joinToRoom(Long id, LocalDateTime date, Model model);
 

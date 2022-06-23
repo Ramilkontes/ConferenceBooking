@@ -40,7 +40,7 @@ public class EventController {
 
     @PostMapping()
     public String createEvent(@Valid EventFormToCreateOrUpdate eventForm, BindingResult bindingResult,
-                              Model model, HttpServletRequest request) {
+                              Model model) {
         if (bindingResult.hasErrors()) {
             getErrorsMap(bindingResult, model);
             getMainPage(eventForm, model);
@@ -49,9 +49,7 @@ public class EventController {
             getMainPage(eventForm, model);
             return "meet-room";
         } else {
-            User user = userService.findOneByLogin(request.getUserPrincipal().getName());
             Event event = service.createEvent(eventForm);
-            roomService.saveIds(event.getId(), user.getId());
             model.addAttribute("event", event);
             model.addAttribute("form", null);
             return "event";
@@ -67,11 +65,11 @@ public class EventController {
             model.addAttribute("form", eventForm);
             model.addAttribute("event", service.getOne(id));
             return "event";
-        } else if (!service.checkingForUpdate(eventForm, model)) {
-            model.addAttribute("event", service.getOne(id));
+        } else if (!service.checkingForUpdate(eventForm, model, service.getOne(id))) {
+            model.addAttribute("event", service.getOne(id+1));
             return "event";
         }
-        Event event = service.updateEvent(id, eventForm);
+        Event event = service.updateEvent(id+1, eventForm);
         model.addAttribute("event", event);
         return "eventEdit";
     }

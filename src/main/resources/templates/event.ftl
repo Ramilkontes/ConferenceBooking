@@ -23,9 +23,6 @@
     <div class="form-group mt-3">
         <form method="post" action="\events\${event.id}">
             <div class="form-group">
-                <input type="hidden" value="${event.id}" name="eventId">
-            </div>
-            <div class="form-group">
                 <input type="text" class="form-control ${(nameError??)?string('is-invalid', '')}"
                        value="<#if form??>${form.name}<#else>${event.name}</#if>" name="name">
                 <#if nameError??>

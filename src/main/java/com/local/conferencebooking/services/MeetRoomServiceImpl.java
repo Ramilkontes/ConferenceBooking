@@ -1,10 +1,8 @@
 package com.local.conferencebooking.services;
 
 import com.local.conferencebooking.models.Event;
-import com.local.conferencebooking.models.MeetRoom;
 import com.local.conferencebooking.models.User;
 import com.local.conferencebooking.repositories.EventRepositories;
-import com.local.conferencebooking.repositories.MeetRoomRepositories;
 import com.local.conferencebooking.repositories.UserRepositories;
 import com.local.conferencebooking.transfer.AdminEventsDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,9 +25,6 @@ public class MeetRoomServiceImpl implements MeetRoomService {
     private EventRepositories eventRepositories;
 
     @Autowired
-    private MeetRoomRepositories repositories;
-
-    @Autowired
     private ServiceClassForDate classForDate;
 
     @Autowired
@@ -44,30 +39,6 @@ public class MeetRoomServiceImpl implements MeetRoomService {
     public List<AdminEventsDto> getAllRooms() {
         return from(eventRepositories.findAll());
     }
-
-    @Override
-    public LocalDateTime getTime() {
-        return LocalDateTime.now();
-    }
-
-    @Override
-    public void saveIds(Long eventId, Long userId) {
-        MeetRoom room = MeetRoom.builder()
-                .userId(userId)
-                .eventId(eventId)
-                .build();
-        repositories.save(room);
-    }
-
-    public Event findNewEvent(Long userId) {
-        MeetRoom meetRoom = repositories.findAll().stream()
-                .filter(x -> x.getUserId().equals(userId))
-                .reduce((first, second) -> second)
-                .get();
-
-        return eventRepositories.getById(meetRoom.getEventId());
-    }
-
 
     @Override
     public void getModels(Model model, List<LocalDate> week) {

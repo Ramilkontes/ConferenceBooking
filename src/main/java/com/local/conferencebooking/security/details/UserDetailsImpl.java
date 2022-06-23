@@ -1,6 +1,5 @@
 package com.local.conferencebooking.security.details;
 
-import com.local.conferencebooking.models.Role;
 import com.local.conferencebooking.models.State;
 import com.local.conferencebooking.models.User;
 import lombok.AllArgsConstructor;
@@ -62,6 +61,7 @@ public class UserDetailsImpl implements UserDetails {
     public boolean isAdmin() {
         return this.user.isAdmin();
     }
+
     public Long getId() {
         return this.user.getId();
     }

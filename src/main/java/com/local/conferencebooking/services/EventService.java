@@ -17,5 +17,5 @@ public interface EventService {
 
     boolean checkingForCreate(EventFormToCreateOrUpdate eventForm, Model model);
 
-    boolean checkingForUpdate(EventFormToCreateOrUpdate eventForm, Model model);
+    boolean checkingForUpdate(EventFormToCreateOrUpdate eventForm, Model model, Event event);
 }

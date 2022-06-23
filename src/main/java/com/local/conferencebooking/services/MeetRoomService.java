@@ -15,10 +15,6 @@ public interface MeetRoomService {
 
     List<AdminEventsDto> getAllRooms();
 
-    LocalDateTime getTime();
-
-    void saveIds(Long eventId, Long userId);
-
     List<LocalDate> getWeek(LocalDate date);
 
     List<LocalDate> getRequiredWeek(LocalDate day, Integer pointer);

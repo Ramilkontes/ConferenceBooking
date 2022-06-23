@@ -3,7 +3,6 @@ package com.local.conferencebooking.controllers;
 import com.local.conferencebooking.services.MeetRoomService;
 import com.local.conferencebooking.services.ServiceClassForDate;
 import com.local.conferencebooking.services.UserService;
-import org.hibernate.validator.internal.constraintvalidators.bv.number.bound.MinValidatorForBigDecimal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
@@ -26,11 +25,6 @@ public class UserController {
 
     @Autowired
     private ServiceClassForDate classForDate;
-
-    @GetMapping("/{id}")
-    public String getInfo (){
-        return "meet-room";
-    }
 
     @PostMapping("/{id}")
     public String joinToRoom(@PathVariable Long id, @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
