@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c6e66d34-137b-44e8-979e-756b0cee06aa" name="Default Changelist" comment="fixed edit validation (version 2.0)">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/conferencebooking/security/config/WebSecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/conferencebooking/security/config/WebSecurityConfig.java" afterDir="false" />
+    <list default="true" id="c6e66d34-137b-44e8-979e-756b0cee06aa" name="Default Changelist" comment="mended WebSecurityConfig how i can">
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/myConcernments.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/myConcernments.ftl" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -194,7 +193,14 @@
       <option name="project" value="LOCAL" />
       <updated>1656071035371</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="mended WebSecurityConfig how i can">
+      <created>1656075219669</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1656075219669</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -224,7 +230,8 @@
     <MESSAGE value="Added My concernments at the navbar, errors about engaged and duration events" />
     <MESSAGE value="deleted rubbish and not using methods, fixed edit validation" />
     <MESSAGE value="fixed edit validation (version 2.0)" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed edit validation (version 2.0)" />
+    <MESSAGE value="mended WebSecurityConfig how i can" />
+    <option name="LAST_COMMIT_MESSAGE" value="mended WebSecurityConfig how i can" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
