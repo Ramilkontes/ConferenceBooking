@@ -2,7 +2,6 @@ package com.local.conferencebooking.controllers;
 
 import com.local.conferencebooking.forms.EventFormToCreateOrUpdate;
 import com.local.conferencebooking.models.Event;
-import com.local.conferencebooking.models.User;
 import com.local.conferencebooking.services.EventService;
 import com.local.conferencebooking.services.MeetRoomService;
 import com.local.conferencebooking.services.ServiceClassForDate;
@@ -15,7 +14,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -66,10 +64,10 @@ public class EventController {
             model.addAttribute("event", service.getOne(id));
             return "event";
         } else if (!service.checkingForUpdate(eventForm, model, service.getOne(id))) {
-            model.addAttribute("event", service.getOne(id+1));
+            model.addAttribute("event", service.getOne(id));
             return "event";
         }
-        Event event = service.updateEvent(id+1, eventForm);
+        Event event = service.updateEvent(id, eventForm);
         model.addAttribute("event", event);
         return "eventEdit";
     }

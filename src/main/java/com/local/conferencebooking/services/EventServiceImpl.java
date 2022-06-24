@@ -54,35 +54,24 @@ public class EventServiceImpl implements EventService {
 
     @Override
     public boolean checkingForUpdate(EventFormToCreateOrUpdate eventForm, Model model, Event oldEvent) {
-        repositories.delete(oldEvent);
         if (standardChecking(eventForm, model)) return false;
-        if (!checkBookingToExistForUpdate(eventForm)) {
-            repositories.save(oldEvent);
+        if (!checkBookingToExistForUpdate(eventForm, oldEvent)) {
             model.addAttribute("engagedTime", "Booking is not possible, this time is engaged");
             return false;
         }
-        repositories.save(oldEvent);
         return true;
     }
 
     public void setEventStatus(LocalDateTime fromForm, LocalDateTime today, Event event) {
         if (fromForm.getDayOfYear() == today.getDayOfYear()) {
             event.setStatus(EventStatus.ACTIVE);
+        } else if (fromForm.getDayOfYear() > today.getDayOfYear()) {
+            event.setStatus(EventStatus.INACTIVE);
         }
     }
 
     private Event buildNewEvent(String name, LocalDateTime dateStart, LocalDateTime dateFinish) {
         return Event.builder()
-                .name(name)
-                .dateStart(dateStart)
-                .dateFinish(dateFinish)
-                .status(EventStatus.INACTIVE)
-                .build();
-    }
-
-    private Event buildNewEvent(Long id, String name, LocalDateTime dateStart, LocalDateTime dateFinish) {
-        return Event.builder()
-                .id(id)
                 .name(name)
                 .dateStart(dateStart)
                 .dateFinish(dateFinish)
@@ -107,12 +96,12 @@ public class EventServiceImpl implements EventService {
         return checkingEngagedTime(events, startNewEvent, finishNewEvent);
     }
 
-    private boolean checkBookingToExistForUpdate(EventFormToCreateOrUpdate eventForm) {
+    private boolean checkBookingToExistForUpdate(EventFormToCreateOrUpdate eventForm, Event oldEvent) {
         List<Event> events = repositories.findAll();
+        events.remove(oldEvent);
         LocalDateTime startNewEvent = eventForm.getDateStart();
         LocalDateTime finishNewEvent = eventForm.getDateFinish();
         return checkingEngagedTime(events, startNewEvent, finishNewEvent);
-
     }
 
     private boolean checkingEngagedTime(List<Event> events, LocalDateTime startNewEvent, LocalDateTime finishNewEvent) {
