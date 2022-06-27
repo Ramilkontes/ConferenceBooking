@@ -4,21 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c6e66d34-137b-44e8-979e-756b0cee06aa" name="Default Changelist" comment="fixed some troubles, checked methods to create events and join to room without joinByName">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/db/migration/R__update_events.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/conferencebooking/ConferenceBooking.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/conferencebooking/ConferenceBooking.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/conferencebooking/controllers/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/conferencebooking/controllers/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/conferencebooking/forms/EventFormToCreate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/conferencebooking/forms/EventFormToCreate.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/conferencebooking/models/Event.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/conferencebooking/models/Event.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/conferencebooking/models/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/conferencebooking/models/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/conferencebooking/repositories/EventRepositories.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/conferencebooking/repositories/EventRepositories.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/conferencebooking/services/EventService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/conferencebooking/services/EventService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/conferencebooking/services/EventServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/conferencebooking/services/EventServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/conferencebooking/services/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/conferencebooking/services/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/conferencebooking/services/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/conferencebooking/services/UserServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+    <list default="true" id="c6e66d34-137b-44e8-979e-756b0cee06aa" name="Default Changelist" comment="mended WebSecurityConfig how i can">
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/myConcernments.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/myConcernments.ftl" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,10 +18,16 @@
         <option value="Enum" />
         <option value="Interface" />
         <option value="Class" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="version1" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitSEFilterConfiguration">
@@ -55,17 +48,18 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="last_opened_file_path" value="D:/Users/Арти/IdeaProjects/income-distributor" />
     <property name="project.structure.last.edited" value="Modules" />
-    <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
   </component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
-      <recent name="com.local.conferencebooking.repositories" />
       <recent name="com.local.conferencebooking.services" />
+      <recent name="com.local.conferencebooking.repositories" />
       <recent name="com.local.conferencebooking.models" />
     </key>
   </component>
@@ -85,6 +79,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.ConferenceBooking" />
+        <item itemvalue="Application.ConferenceBooking" />
+        <item itemvalue="Application.ConferenceBooking" />
         <item itemvalue="Application.ConferenceBooking" />
       </list>
     </recent_temporary>
@@ -140,7 +137,70 @@
       <option name="project" value="LOCAL" />
       <updated>1650980629128</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="version1">
+      <created>1651940823310</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1651940823310</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Changed Back with Front, added login, mainPage and mended controller involve create, update, get form's to event">
+      <created>1652879554827</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1652879554827</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Added calendarform for front, also started set validation">
+      <created>1653398994678</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1653398994678</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Added changed weeks with current events for week">
+      <created>1654530912623</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1654530912623</updated>
+    </task>
+    <task id="LOCAL-00011" summary="added validation">
+      <created>1655138422420</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1655138422420</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Added My concernments at the navbar, errors about engaged and duration events">
+      <created>1655561065878</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1655561065878</updated>
+    </task>
+    <task id="LOCAL-00013" summary="deleted rubbish and not using methods, fixed edit validation">
+      <created>1656023659118</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1656023659118</updated>
+    </task>
+    <task id="LOCAL-00014" summary="fixed edit validation (version 2.0)">
+      <created>1656071035371</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1656071035371</updated>
+    </task>
+    <task id="LOCAL-00015" summary="mended WebSecurityConfig how i can">
+      <created>1656075219669</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1656075219669</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -162,6 +222,22 @@
     <MESSAGE value="added a few properties" />
     <MESSAGE value="Changed entity names from desktop and rooms and their details; added methods to checking event dates" />
     <MESSAGE value="fixed some troubles, checked methods to create events and join to room without joinByName" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed some troubles, checked methods to create events and join to room without joinByName" />
+    <MESSAGE value="version1" />
+    <MESSAGE value="Changed Back with Front, added login, mainPage and mended controller involve create, update, get form's to event" />
+    <MESSAGE value="Added calendarform for front, also started set validation" />
+    <MESSAGE value="Added changed weeks with current events for week" />
+    <MESSAGE value="added validation" />
+    <MESSAGE value="Added My concernments at the navbar, errors about engaged and duration events" />
+    <MESSAGE value="deleted rubbish and not using methods, fixed edit validation" />
+    <MESSAGE value="fixed edit validation (version 2.0)" />
+    <MESSAGE value="mended WebSecurityConfig how i can" />
+    <option name="LAST_COMMIT_MESSAGE" value="mended WebSecurityConfig how i can" />
+  </component>
+  <component name="XDebuggerManager">
+    <watches-manager>
+      <configuration name="Application">
+        <watch expression="week" language="JAVA" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>

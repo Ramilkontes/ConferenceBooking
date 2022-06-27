@@ -57,4 +57,12 @@ public class UserDetailsImpl implements UserDetails {
     public User getUser() {
         return user;
     }
+
+    public boolean isAdmin() {
+        return this.user.isAdmin();
+    }
+
+    public Long getId() {
+        return this.user.getId();
+    }
 }

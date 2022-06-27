@@ -1,26 +1,23 @@
 package com.local.conferencebooking.controllers;
 
-import com.local.conferencebooking.forms.LoginForm;
-import com.local.conferencebooking.models.Token;
-import com.local.conferencebooking.services.LoginService;
-import com.local.conferencebooking.transfer.TokenDto;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.*;
 
-@RestController
-@RequestMapping("/login")
+import javax.servlet.http.HttpServletRequest;
+
+@Controller
 public class LoginController {
 
-    @Autowired
-    private LoginService service;
-
-    @PostMapping
-    public ResponseEntity<TokenDto> login (@RequestBody LoginForm form){
-        return ResponseEntity.ok(service.login(form));
+    @GetMapping("/login")
+    public String getLoginPage(Authentication authentication, ModelMap model, HttpServletRequest request) {
+        if (authentication != null) {
+            return "redirect:/";
+        }
+        if (request.getParameterMap().containsKey("error")) {
+            model.addAttribute("error", true);
+        }
+        return "login";
     }
-
 }

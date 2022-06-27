@@ -1,21 +1,19 @@
 package com.local.conferencebooking.models;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Embeddable;
-import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
-import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import java.time.LocalDate;
 
-@Embeddable
-@Table(name = "users_events", uniqueConstraints = {
-        @UniqueConstraint(columnNames = "users_id"),
-        @UniqueConstraint(columnNames = "events_id")})
+@Entity
 @Data
-public class ServiceClassForMeetRoom implements Serializable {
-    @Column(name = "users_id")
-    private Long userId;
-    @Column(name = "events_id")
-    private Long eventId;
+@AllArgsConstructor
+@NoArgsConstructor
+public class ServiceClassForMeetRoom {
+    @Id
+    private Long id;
+    private LocalDate dayWeek;
 }

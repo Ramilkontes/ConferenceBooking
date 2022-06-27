@@ -1,57 +1,87 @@
 package com.local.conferencebooking.controllers;
 
-import com.local.conferencebooking.forms.EventFormToCreate;
+import com.local.conferencebooking.forms.EventFormToCreateOrUpdate;
 import com.local.conferencebooking.models.Event;
 import com.local.conferencebooking.services.EventService;
-import com.local.conferencebooking.transfer.EventDto;
+import com.local.conferencebooking.services.MeetRoomService;
+import com.local.conferencebooking.services.ServiceClassForDate;
+import com.local.conferencebooking.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.util.Objects;
+import javax.validation.Valid;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Map;
 
-import static com.local.conferencebooking.transfer.EventDto.*;
-
-@RestController
+@Controller
 @RequestMapping("/events")
 public class EventController {
 
     @Autowired
     private EventService service;
 
-    @GetMapping("/{id}")
-    public ResponseEntity<EventDto> getInfo (@PathVariable Long id){
-        if (checkForExists(id)==null){
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        EventDto result = from(Objects.requireNonNull(checkForExists(id)));
-        return new ResponseEntity<>(result, HttpStatus.OK);
-    }
+    @Autowired
+    private MeetRoomService roomService;
+
+    @Autowired
+    private UserService userService;
+
+    @Autowired
+    private ServiceClassForDate classForDate;
 
     @PostMapping()
-    public ResponseEntity<EventDto> createEvent(@RequestBody EventFormToCreate eventFormToCreate){
-        service.createEvent(eventFormToCreate);
-        return ResponseEntity.ok().build();
-    }
-
-    @PutMapping("/{id}")
-    public ResponseEntity<EventDto> updateInformation (@PathVariable Long id, @RequestBody EventFormToCreate updateForm){
-        if (checkForExists(id)==null){
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    public String createEvent(@Valid EventFormToCreateOrUpdate eventForm, BindingResult bindingResult,
+                              Model model) {
+        if (bindingResult.hasErrors()) {
+            getErrorsMap(bindingResult, model);
+            getMainPage(eventForm, model);
+            return "meet-room";
+        } else if (!service.checkingForCreate(eventForm, model)) {
+            getMainPage(eventForm, model);
+            return "meet-room";
+        } else {
+            Event event = service.createEvent(eventForm);
+            model.addAttribute("event", event);
+            model.addAttribute("form", null);
+            return "event";
         }
-        return new ResponseEntity<>(from(service.updateEvent(id, updateForm)), HttpStatus.ACCEPTED);
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<EventDto> deleteRoom(@PathVariable Long id){
-        if (checkForExists(id)==null){
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    @PostMapping("/{id}")
+    public String updateInformation(@PathVariable Long id,
+                                    @Valid EventFormToCreateOrUpdate eventForm, BindingResult bindingResult,
+                                    Model model) {
+        if (bindingResult.hasErrors()) {
+            getErrorsMap(bindingResult, model);
+            model.addAttribute("form", eventForm);
+            model.addAttribute("event", service.getOne(id));
+            return "event";
+        } else if (!service.checkingForUpdate(eventForm, model, service.getOne(id))) {
+            model.addAttribute("event", service.getOne(id));
+            return "event";
         }
-        return new ResponseEntity<>(from(service.deleteEvent(id)), HttpStatus.OK);
+        Event event = service.updateEvent(id, eventForm);
+        model.addAttribute("event", event);
+        return "eventEdit";
     }
 
-    private Event checkForExists(Long id) {
-        return service.getOne(id);
+    private void getErrorsMap(BindingResult bindingResult, Model model) {
+        Map<String, String> errorsMap = ControllerUtils.getErrors(bindingResult);
+        model.addAllAttributes(errorsMap);
+    }
+
+    private void getMainPage(EventFormToCreateOrUpdate eventForm, Model model) {
+        model.addAttribute("form", eventForm);
+        model.addAttribute("dateStart", LocalDateTime.now());
+        model.addAttribute("dateFinish", LocalDateTime.now());
+        List<LocalDate> week = roomService.getWeek(classForDate.getDate(1L));
+        roomService.getModels(model, week);
     }
 }

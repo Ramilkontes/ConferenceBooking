@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 public class AdminUsersDto {
     private Long id;
     private String login;
-    private String firsName;
+    private String firstName;
     private String lastName;
     private State state;
 
@@ -25,7 +25,7 @@ public class AdminUsersDto {
         return AdminUsersDto.builder()
                 .id(user.getId())
                 .login(user.getLogin())
-                .firsName(user.getFirsName())
+                .firstName(user.getFirstName())
                 .lastName(user.getLastName())
                 .state(user.getState())
                 .build();

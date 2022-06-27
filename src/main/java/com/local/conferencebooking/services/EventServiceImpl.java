@@ -1,17 +1,16 @@
 package com.local.conferencebooking.services;
 
-import com.local.conferencebooking.forms.EventFormToCreate;
+import com.local.conferencebooking.forms.EventFormToCreateOrUpdate;
 import com.local.conferencebooking.models.Event;
 import com.local.conferencebooking.models.EventStatus;
 import com.local.conferencebooking.repositories.EventRepositories;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class EventServiceImpl implements EventService {
@@ -28,28 +27,16 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public Event createEvent(EventFormToCreate eventFormToCreate) {
-        Event event = buildNewEvent(eventFormToCreate);
-        checkBookingToExist(event);
-        long minutes = getMinutes(eventFormToCreate);
-        if (minutes >= 30 && minutes <= 1440) {
-            Event eventCandidate = getStatusEvent(event);
-            if (eventCandidate.getStatus().equals(EventStatus.ACTIVE) ||
-                    eventCandidate.getStatus().equals(EventStatus.INACTIVE)) {
-                repositories.save(event);
-                return event;
-            } else
-                throw new IllegalArgumentException("Sorry, event in the past can't be create");
-        } else {
-            throw new IllegalArgumentException("Booking is not possible, please check entered date:" +
-                    "Minimum booking interval 30 minutes,\n" +
-                    "maximum 24 hours");
-        }
+    public Event createEvent(EventFormToCreateOrUpdate eventForm) {
+        Event event = buildNewEvent(eventForm.getName(), eventForm.getDateStart(), eventForm.getDateFinish());
+        setEventStatus(eventForm.getDateStart(), LocalDateTime.now(), event);
+        return repositories.save(event);
     }
 
     @Override
-    public Event updateEvent(Long id, EventFormToCreate updateForm) {
+    public Event updateEvent(Long id, EventFormToCreateOrUpdate updateForm) {
         Event event = repositories.getById(id);
+        setEventStatus(updateForm.getDateStart(), LocalDateTime.now(), event);
         event.setName(updateForm.getName());
         event.setDateStart(updateForm.getDateStart());
         event.setDateFinish(updateForm.getDateFinish());
@@ -57,63 +44,95 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public Event deleteEvent(Long id) {
-        Optional<Event> room = repositories.findById(id);
-        room.ifPresent(del -> repositories.delete(del));
-        return room.get();
+    public boolean checkingForCreate(EventFormToCreateOrUpdate eventForm, Model model) {
+        if (standardChecking(eventForm, model)) return false;
+        if (!checkBookingToExistForCreate(eventForm)) {
+            model.addAttribute("engagedTime", "Booking is not possible, this time is engaged");
+            return false;
+        } else return true;
     }
 
-    private Event buildNewEvent(EventFormToCreate eventFormToCreate) {
-        String name;
-        if(eventFormToCreate.getName()==null) {
-            name = "Event";
+    @Override
+    public boolean checkingForUpdate(EventFormToCreateOrUpdate eventForm, Model model, Event oldEvent) {
+        if (standardChecking(eventForm, model)) return false;
+        if (!checkBookingToExistForUpdate(eventForm, oldEvent)) {
+            model.addAttribute("engagedTime", "Booking is not possible, this time is engaged");
+            return false;
         }
-        else {
-            name = eventFormToCreate.getName();
+        return true;
+    }
+
+    public void setEventStatus(LocalDateTime fromForm, LocalDateTime today, Event event) {
+        if (fromForm.getDayOfYear() == today.getDayOfYear()) {
+            event.setStatus(EventStatus.ACTIVE);
+        } else if (fromForm.getDayOfYear() > today.getDayOfYear()) {
+            event.setStatus(EventStatus.INACTIVE);
         }
+    }
+
+    private Event buildNewEvent(String name, LocalDateTime dateStart, LocalDateTime dateFinish) {
         return Event.builder()
                 .name(name)
-                .dateStart(eventFormToCreate.getDateStart())
-                .dateFinish(eventFormToCreate.getDateFinish())
+                .dateStart(dateStart)
+                .dateFinish(dateFinish)
                 .status(EventStatus.INACTIVE)
                 .build();
     }
 
-    private void checkBookingToExist(Event event) {
+    private boolean checkingToCorrectForm(EventFormToCreateOrUpdate eventForm) {
+        long minutes = getMinutes(eventForm.getDateStart(), eventForm.getDateFinish());
+        if (minutes >= 30 && minutes <= 1440) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private boolean checkBookingToExistForCreate(EventFormToCreateOrUpdate eventForm) {
+        Event event = buildNewEvent(eventForm.getName(), eventForm.getDateStart(), eventForm.getDateFinish());
         List<Event> events = repositories.findAll();
         LocalDateTime startNewEvent = event.getDateStart();
         LocalDateTime finishNewEvent = event.getDateFinish();
+        return checkingEngagedTime(events, startNewEvent, finishNewEvent);
+    }
+
+    private boolean checkBookingToExistForUpdate(EventFormToCreateOrUpdate eventForm, Event oldEvent) {
+        List<Event> events = repositories.findAll();
+        events.remove(oldEvent);
+        LocalDateTime startNewEvent = eventForm.getDateStart();
+        LocalDateTime finishNewEvent = eventForm.getDateFinish();
+        return checkingEngagedTime(events, startNewEvent, finishNewEvent);
+    }
+
+    private boolean checkingEngagedTime(List<Event> events, LocalDateTime startNewEvent, LocalDateTime finishNewEvent) {
         if (events.stream().anyMatch(x -> x.getDateStart().isAfter(startNewEvent)
                 && x.getDateStart().isBefore(finishNewEvent))) {
-            throw new IllegalArgumentException("Booking is not possible, this time is engaged");
+            return false;
         } else if (events.stream().anyMatch(x -> x.getDateFinish().isAfter(startNewEvent)
                 && x.getDateFinish().isBefore(finishNewEvent))) {
-            throw new IllegalArgumentException("Booking is not possible, this time is engaged");
+            return false;
         } else if (events.stream().anyMatch(x -> x.getDateStart().equals(startNewEvent)
                 || x.getDateFinish().equals(finishNewEvent))) {
-            throw new IllegalArgumentException("Booking is not possible, this time is engaged");
+            return false;
         }
+        return true;
     }
 
-    //TODO: написать првоерку на корректность введения формы даты для создания бронирования
-    //TODO: чтобы нельзя было создать событие в прошлом
+    private boolean standardChecking(EventFormToCreateOrUpdate eventForm, Model model) {
+        if (eventForm.getDateStart().isAfter(eventForm.getDateFinish())) {
+            model.addAttribute("notCorrectness", "Time start mustn't be after time finish");
+            return true;
+        }
+        if (!checkingToCorrectForm(eventForm)) {
+            model.addAttribute("notCorrectness", "Booking is not possible, please check entered date: " +
+                    "Minimum booking interval 30 minutes, maximum - 24 hours");
+            return true;
+        }
+        return false;
+    }
 
-    private long getMinutes(EventFormToCreate eventFormToCreate) {
-        LocalDateTime start = eventFormToCreate.getDateStart();
-        LocalDateTime finish = eventFormToCreate.getDateFinish();
+    private long getMinutes(LocalDateTime start, LocalDateTime finish) {
         return ChronoUnit.MINUTES.between(start, finish);
-    }
-
-    private Event getStatusEvent(Event event) {
-        LocalDate startDate = event.getDateStart().toLocalDate();
-        LocalDate todayDate = roomService.getTime().toLocalDate();
-        if (startDate.compareTo(todayDate) == 0) {
-            event.setStatus(EventStatus.ACTIVE);
-        }
-        if (startDate.compareTo(todayDate) < 0) {
-            event.setStatus(EventStatus.CLOSED);
-        }
-        return event;
     }
 
     public Event checkingEvent(LocalDateTime date) {
