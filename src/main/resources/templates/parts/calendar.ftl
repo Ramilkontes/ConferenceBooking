@@ -1108,6 +1108,3 @@
     </tbody>
 </table>
 </#macro>
-
-
-

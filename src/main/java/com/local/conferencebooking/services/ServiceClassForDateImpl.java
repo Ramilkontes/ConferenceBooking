@@ -1,6 +1,6 @@
 package com.local.conferencebooking.services;
 
-import com.local.conferencebooking.models.ServiceClassForMeetRoom;
+import com.local.conferencebooking.models.DayWeek;
 import com.local.conferencebooking.repositories.ServiceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,9 +20,9 @@ public class ServiceClassForDateImpl implements ServiceClassForDate {
 
     @Override
     public void updateDate(Long id, LocalDate localDate) {
-        ServiceClassForMeetRoom serviceClassForMeetRoom= repository.getById(id);
-        serviceClassForMeetRoom.setDayWeek(localDate);
-        repository.save(serviceClassForMeetRoom);
+        DayWeek dayWeek = repository.getById(id);
+        dayWeek.setDayWeek(localDate);
+        repository.save(dayWeek);
     }
 
 

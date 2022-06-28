@@ -12,7 +12,7 @@ import java.time.LocalDate;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ServiceClassForMeetRoom {
+public class DayWeek {
     @Id
     private Long id;
     private LocalDate dayWeek;

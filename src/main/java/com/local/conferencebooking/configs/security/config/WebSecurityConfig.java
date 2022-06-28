@@ -1,4 +1,4 @@
-package com.local.conferencebooking.security.config;
+package com.local.conferencebooking.configs.security.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;

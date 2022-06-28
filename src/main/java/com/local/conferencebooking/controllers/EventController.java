@@ -1,6 +1,6 @@
 package com.local.conferencebooking.controllers;
 
-import com.local.conferencebooking.forms.EventFormToCreateOrUpdate;
+import com.local.conferencebooking.forms.EventForm;
 import com.local.conferencebooking.models.Event;
 import com.local.conferencebooking.services.EventService;
 import com.local.conferencebooking.services.MeetRoomService;
@@ -37,7 +37,7 @@ public class EventController {
     private ServiceClassForDate classForDate;
 
     @PostMapping()
-    public String createEvent(@Valid EventFormToCreateOrUpdate eventForm, BindingResult bindingResult,
+    public String createEvent(@Valid EventForm eventForm, BindingResult bindingResult,
                               Model model) {
         if (bindingResult.hasErrors()) {
             getErrorsMap(bindingResult, model);
@@ -56,7 +56,7 @@ public class EventController {
 
     @PostMapping("/{id}")
     public String updateInformation(@PathVariable Long id,
-                                    @Valid EventFormToCreateOrUpdate eventForm, BindingResult bindingResult,
+                                    @Valid EventForm eventForm, BindingResult bindingResult,
                                     Model model) {
         if (bindingResult.hasErrors()) {
             getErrorsMap(bindingResult, model);
@@ -77,7 +77,7 @@ public class EventController {
         model.addAllAttributes(errorsMap);
     }
 
-    private void getMainPage(EventFormToCreateOrUpdate eventForm, Model model) {
+    private void getMainPage(EventForm eventForm, Model model) {
         model.addAttribute("form", eventForm);
         model.addAttribute("dateStart", LocalDateTime.now());
         model.addAttribute("dateFinish", LocalDateTime.now());

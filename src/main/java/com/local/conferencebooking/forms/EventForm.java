@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class EventFormToCreateOrUpdate {
+public class EventForm {
 
     @NotBlank(message = "Name should not be empty or null")
     @Size(min = 2, max = 13, message = "Name should be between 2 and 13 characters")

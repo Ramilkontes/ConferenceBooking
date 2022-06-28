@@ -1,4 +1,4 @@
-package com.local.conferencebooking.security.details;
+package com.local.conferencebooking.configs.security.details;
 
 import com.local.conferencebooking.models.State;
 import com.local.conferencebooking.models.User;

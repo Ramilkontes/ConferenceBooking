@@ -1,6 +1,6 @@
 package com.local.conferencebooking.services;
 
-import com.local.conferencebooking.forms.EventFormToCreateOrUpdate;
+import com.local.conferencebooking.forms.EventForm;
 import com.local.conferencebooking.models.Event;
 import com.local.conferencebooking.models.EventStatus;
 import com.local.conferencebooking.repositories.EventRepositories;
@@ -27,14 +27,14 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public Event createEvent(EventFormToCreateOrUpdate eventForm) {
+    public Event createEvent(EventForm eventForm) {
         Event event = buildNewEvent(eventForm.getName(), eventForm.getDateStart(), eventForm.getDateFinish());
         setEventStatus(eventForm.getDateStart(), LocalDateTime.now(), event);
         return repositories.save(event);
     }
 
     @Override
-    public Event updateEvent(Long id, EventFormToCreateOrUpdate updateForm) {
+    public Event updateEvent(Long id, EventForm updateForm) {
         Event event = repositories.getById(id);
         setEventStatus(updateForm.getDateStart(), LocalDateTime.now(), event);
         event.setName(updateForm.getName());
@@ -44,7 +44,7 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public boolean checkingForCreate(EventFormToCreateOrUpdate eventForm, Model model) {
+    public boolean checkingForCreate(EventForm eventForm, Model model) {
         if (standardChecking(eventForm, model)) return false;
         if (!checkBookingToExistForCreate(eventForm)) {
             model.addAttribute("engagedTime", "Booking is not possible, this time is engaged");
@@ -53,7 +53,7 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public boolean checkingForUpdate(EventFormToCreateOrUpdate eventForm, Model model, Event oldEvent) {
+    public boolean checkingForUpdate(EventForm eventForm, Model model, Event oldEvent) {
         if (standardChecking(eventForm, model)) return false;
         if (!checkBookingToExistForUpdate(eventForm, oldEvent)) {
             model.addAttribute("engagedTime", "Booking is not possible, this time is engaged");
@@ -79,7 +79,7 @@ public class EventServiceImpl implements EventService {
                 .build();
     }
 
-    private boolean checkingToCorrectForm(EventFormToCreateOrUpdate eventForm) {
+    private boolean checkingToCorrectForm(EventForm eventForm) {
         long minutes = getMinutes(eventForm.getDateStart(), eventForm.getDateFinish());
         if (minutes >= 30 && minutes <= 1440) {
             return true;
@@ -88,7 +88,7 @@ public class EventServiceImpl implements EventService {
         }
     }
 
-    private boolean checkBookingToExistForCreate(EventFormToCreateOrUpdate eventForm) {
+    private boolean checkBookingToExistForCreate(EventForm eventForm) {
         Event event = buildNewEvent(eventForm.getName(), eventForm.getDateStart(), eventForm.getDateFinish());
         List<Event> events = repositories.findAll();
         LocalDateTime startNewEvent = event.getDateStart();
@@ -96,7 +96,7 @@ public class EventServiceImpl implements EventService {
         return checkingEngagedTime(events, startNewEvent, finishNewEvent);
     }
 
-    private boolean checkBookingToExistForUpdate(EventFormToCreateOrUpdate eventForm, Event oldEvent) {
+    private boolean checkBookingToExistForUpdate(EventForm eventForm, Event oldEvent) {
         List<Event> events = repositories.findAll();
         events.remove(oldEvent);
         LocalDateTime startNewEvent = eventForm.getDateStart();
@@ -118,7 +118,7 @@ public class EventServiceImpl implements EventService {
         return true;
     }
 
-    private boolean standardChecking(EventFormToCreateOrUpdate eventForm, Model model) {
+    private boolean standardChecking(EventForm eventForm, Model model) {
         if (eventForm.getDateStart().isAfter(eventForm.getDateFinish())) {
             model.addAttribute("notCorrectness", "Time start mustn't be after time finish");
             return true;

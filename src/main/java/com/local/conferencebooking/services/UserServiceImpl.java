@@ -1,6 +1,6 @@
 package com.local.conferencebooking.services;
 
-import com.local.conferencebooking.exceptions.UsersNotFountException;
+import com.local.conferencebooking.exceptions.UsersNotFoundException;
 import com.local.conferencebooking.models.Event;
 import com.local.conferencebooking.models.User;
 import com.local.conferencebooking.repositories.EventRepositories;
@@ -29,7 +29,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User findOneByLogin(String login) {
-        return repositories.findOneByLogin(login).orElseThrow(UsersNotFountException::new);
+        return repositories.findOneByLogin(login).orElseThrow(UsersNotFoundException::new);
     }
 
     @Override

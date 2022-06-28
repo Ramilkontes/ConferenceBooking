@@ -1,7 +1,7 @@
 package com.local.conferencebooking.repositories;
 
-import com.local.conferencebooking.models.ServiceClassForMeetRoom;
+import com.local.conferencebooking.models.DayWeek;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface ServiceRepository extends JpaRepository<ServiceClassForMeetRoom, Long> {
+public interface ServiceRepository extends JpaRepository<DayWeek, Long> {
 }

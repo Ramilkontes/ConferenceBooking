@@ -1,6 +1,6 @@
-package com.local.conferencebooking.security.details;
+package com.local.conferencebooking.configs.security.details;
 
-import com.local.conferencebooking.exceptions.UsersNotFountException;
+import com.local.conferencebooking.exceptions.UsersNotFoundException;
 import com.local.conferencebooking.repositories.UserRepositories;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -14,7 +14,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     private UserRepositories repositories;
 
     @Override
-    public UserDetails loadUserByUsername(String login) throws UsersNotFountException {
+    public UserDetails loadUserByUsername(String login) throws UsersNotFoundException {
         return new
                 UserDetailsImpl(repositories.findOneByLogin(login)
                 .orElseThrow(IllegalArgumentException::new));
