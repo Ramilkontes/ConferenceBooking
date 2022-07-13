@@ -5,6 +5,7 @@ import com.local.conferencebooking.models.User;
 import com.local.conferencebooking.repositories.EventRepositories;
 import com.local.conferencebooking.repositories.UserRepositories;
 import com.local.conferencebooking.transfer.AdminEventsDto;
+import org.apache.tomcat.jni.Local;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
@@ -25,9 +26,6 @@ public class MeetRoomServiceImpl implements MeetRoomService {
     private EventRepositories eventRepositories;
 
     @Autowired
-    private ServiceClassForDate classForDate;
-
-    @Autowired
     private UserService userService;
 
     @Override
@@ -41,8 +39,9 @@ public class MeetRoomServiceImpl implements MeetRoomService {
     }
 
     @Override
-    public void getModels(Model model, List<LocalDate> week) {
-        List<Event> currentEvents = getCurrentEvent(week);
+    public void getModels(Model model, LocalDateTime date) {
+        List<LocalDate> week = getWeek(date.toLocalDate());
+        List<Event> currentEvents = findEventsOfCurrentWeek(date);
         model.addAttribute("week", week);
         model.addAllAttributes(userService.getFlagsByDays(week));
         model.addAllAttributes(getEventsByTime(currentEvents));
@@ -66,22 +65,28 @@ public class MeetRoomServiceImpl implements MeetRoomService {
     }
 
     @Override
-    public List<LocalDate> getRequiredWeek(LocalDate day, Integer pointer) {
-        List<LocalDate> date;
+    public LocalDateTime getRequiredDate(LocalDateTime day, Integer pointer) {
+        LocalDateTime requiredDay;
         if (pointer < 0) {
-            date = getWeek(day.minusWeeks(1));
-            classForDate.updateDate(1L, date.get(0));
+            requiredDay = day.minusWeeks(1);
         } else {
-            date = getWeek(day.plusWeeks(1));
-            classForDate.updateDate(1L, date.get(0));
+            requiredDay = day.plusWeeks(1);
         }
-        return date;
+        return requiredDay;
+    }
+
+    private List<Event> getCurrentEvent(List<LocalDate> week) {
+        return eventRepositories.findAll().stream()
+                .filter(x -> week.contains(x.getDateStart().toLocalDate()))
+                .sorted(Comparator.comparing(Event::getDateStart))
+                .collect(Collectors.toList());
     }
 
     @Override
-    public List<Event> getCurrentEvent(List<LocalDate> week) {
-        return eventRepositories.findAll().stream()
-                .filter(x -> week.contains(x.getDateStart().toLocalDate()))
+    public List<Event> findEventsOfCurrentWeek(LocalDateTime currentDate) {
+        LocalDateTime from = currentDate.with(DayOfWeek.MONDAY).toLocalDate().atTime(LocalTime.MIN);
+        LocalDateTime to = currentDate.with(DayOfWeek.SUNDAY).toLocalDate().atTime(LocalTime.MAX);
+        return eventRepositories.findAllByDateStartBetween(from, to).stream()
                 .sorted(Comparator.comparing(Event::getDateStart))
                 .collect(Collectors.toList());
     }
@@ -90,7 +95,7 @@ public class MeetRoomServiceImpl implements MeetRoomService {
     public Map<String, List<Event>> getEventsByDay(List<LocalDate> week, List<Event> events) {
         Map<String, List<Event>> eventsByDay = new HashMap<>();
         if(!events.isEmpty()){
-            events.stream().forEach((k)->{
+            events.forEach((k)->{
                 LocalDate dateStartEvent = k.getDateStart().toLocalDate();
                 LocalTime timeStartEvent = k.getDateStart().toLocalTime();
                 if(week.contains(dateStartEvent)){

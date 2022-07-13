@@ -7,8 +7,11 @@
         <th scope="col" class="prev">
             <div class="form-group">
                 <form method="post" action="/">
-                    <div>
+                    <div class="form-group">
                         <input type="hidden" value="-1" name="pointer">
+                    </div>
+                    <div class="form-group" style="display: none;">
+                        <input type="hidden" value="${currentDate}" name="currentDate">
                     </div>
                     <div class="form-group">
                         <button type="submit" class="btn btn-dark">&#10094;</button>
@@ -61,8 +64,11 @@
         <th scope="col" class="next">
             <div class="form-group">
                 <form method="post" action="/">
-                    <div>
+                    <div class="form-group">
                         <input type="hidden" value="1" name="pointer">
+                    </div>
+                    <div class="form-group" style="display: none;">
+                        <input type="hidden" value="${currentDate}" name="currentDate">
                     </div>
                     <div class="form-group">
                         <button type="submit" class="btn btn-dark">&#10095;</button>

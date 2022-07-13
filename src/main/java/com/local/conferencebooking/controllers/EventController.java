@@ -4,20 +4,19 @@ import com.local.conferencebooking.forms.EventForm;
 import com.local.conferencebooking.models.Event;
 import com.local.conferencebooking.services.EventService;
 import com.local.conferencebooking.services.MeetRoomService;
-import com.local.conferencebooking.services.ServiceClassForDate;
 import com.local.conferencebooking.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -33,18 +32,16 @@ public class EventController {
     @Autowired
     private UserService userService;
 
-    @Autowired
-    private ServiceClassForDate classForDate;
-
     @PostMapping()
-    public String createEvent(@Valid EventForm eventForm, BindingResult bindingResult,
+    public String createEvent(@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime currentDate,
+                              @Valid EventForm eventForm, BindingResult bindingResult,
                               Model model) {
         if (bindingResult.hasErrors()) {
             getErrorsMap(bindingResult, model);
-            getMainPage(eventForm, model);
+            getMainPage(eventForm, model, currentDate);
             return "meet-room";
         } else if (!service.checkingForCreate(eventForm, model)) {
-            getMainPage(eventForm, model);
+            getMainPage(eventForm, model, currentDate);
             return "meet-room";
         } else {
             Event event = service.createEvent(eventForm);
@@ -77,11 +74,10 @@ public class EventController {
         model.addAllAttributes(errorsMap);
     }
 
-    private void getMainPage(EventForm eventForm, Model model) {
+    private void getMainPage(EventForm eventForm, Model model, LocalDateTime date) {
         model.addAttribute("form", eventForm);
         model.addAttribute("dateStart", LocalDateTime.now());
         model.addAttribute("dateFinish", LocalDateTime.now());
-        List<LocalDate> week = roomService.getWeek(classForDate.getDate(1L));
-        roomService.getModels(model, week);
+        roomService.getModels(model, date);
     }
 }

@@ -21,6 +21,9 @@
 <div class="collapse <#if form?? || engagedTime?? || notCorrectness??>show</#if>" id="collapseExample">
     <div class="form-group mt-3">
         <form method="post" id="createEvent" action="\events">
+            <div style="display: none;">
+                <input type="hidden" value="${currentDate}" name="currentDate">
+            </div>
             <div class="form-group">
                 <input type="text" class="form-control ${(nameError??)?string('is-invalid', '')}"
                        value="<#if form??>${form.name}</#if>" name="name" placeholder="Enter the name"/>

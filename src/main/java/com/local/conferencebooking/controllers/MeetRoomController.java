@@ -1,8 +1,9 @@
 package com.local.conferencebooking.controllers;
 
+import com.local.conferencebooking.forms.CalendarForm;
 import com.local.conferencebooking.services.MeetRoomService;
-import com.local.conferencebooking.services.ServiceClassForDate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,17 +12,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.time.LocalDate;
-import java.util.List;
+import java.time.LocalDateTime;
 
 @Controller
 public class MeetRoomController {
 
     @Autowired
     private MeetRoomService service;
-
-    @Autowired
-    private ServiceClassForDate classForDate;
 
     @GetMapping("/meet-room/people")
     public String getAllPeople(Model model) {
@@ -46,23 +43,18 @@ public class MeetRoomController {
         if (authentication == null) {
             return "redirect:/login";
         }
-        List<LocalDate> week;
-        if (model.containsAttribute("mark")) {
-            week = service.getWeek(classForDate.getDate(1L));
-            model.addAttribute("mark", null);
-        } else {
-            week = service.getWeek(LocalDate.now());
-            classForDate.updateDate(1L, week.get(0));
-        }
-        service.getModels(model, week);
+        LocalDateTime now = LocalDateTime.now();
+        model.addAttribute("currentDate", now);
+        service.getModels(model, now);
         return "meet-room";
     }
 
     @PostMapping("/")
-    public String getPreviousOrNextWeek(@RequestParam Integer pointer, Model model) {
-        List<LocalDate> week = service.getRequiredWeek(classForDate.getDate(1L), pointer);
-        model.addAttribute("mark", true);
-        service.getModels(model, week);
+    public String getPreviousOrNextWeek(CalendarForm calendarForm,
+                                        Model model) {
+        LocalDateTime requiredDate = service.getRequiredDate(calendarForm.getCurrentDate(), calendarForm.getPointer());
+        model.addAttribute("currentDate", requiredDate);
+        service.getModels(model, requiredDate);
         return "meet-room";
     }
 }

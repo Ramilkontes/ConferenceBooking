@@ -17,15 +17,15 @@ public interface MeetRoomService {
 
     List<LocalDate> getWeek(LocalDate date);
 
-    List<LocalDate> getRequiredWeek(LocalDate day, Integer pointer);
-
-    List<Event> getCurrentEvent (List<LocalDate> week);
+    LocalDateTime getRequiredDate(LocalDateTime day, Integer pointer);
 
     Map<String, List<Event>> getEventsByDay(List<LocalDate> week, List<Event> events);
 
     Map<String, Boolean> getEventsByTime (List<Event> events);
 
-    void getModels(Model model, List<LocalDate> week);
+    void getModels(Model model, LocalDateTime date);
 
     List<Event> getMyConcernments(Long id);
+
+    List<Event> findEventsOfCurrentWeek(LocalDateTime currentDate);
 }

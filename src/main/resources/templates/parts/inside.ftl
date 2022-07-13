@@ -10,6 +10,17 @@
             <div class="form-style-2-heading">Event name: ${times[0].name}</div>
             <div class="form-style-2-heading">Time start: ${times[0].dateStart}</div>
             <div class="form-style-2-heading">Time finish ${times[0].dateFinish}</div>
+
+            <#if flag>
+            <form action="\users\${id}" method="post">
+                <div class="form-group">
+                    <input type="hidden" value="${times[0].dateStart}" name="date">
+                </div>
+                <div class="form-group">
+                    <button button type="submit" class="btn  btn-outline-primary">Join</button>
+                </div>
+            </form>
+        </#if>
         </#list>
         </div>
     </tr>
@@ -19,6 +30,17 @@
             <div class="form-style-2-heading">Event name: ${times[1].name}</div>
             <div class="form-style-2-heading">Time start: ${times[1].dateStart}</div>
             <div class="form-style-2-heading">Time finish: ${times[1].dateFinish}</div>
+
+            <#if flag>
+            <form action="\users\${id}" method="post" >
+                <div class="form-group">
+                    <input type="hidden" value="${times[1].dateStart}" name="date">
+                </div>
+                <div class="form-group">
+                    <button button type="submit" class="btn  btn-outline-primary">Join</button>
+                </div>
+            </form>
+        </#if>
         </#list>
         </div>
     </tr>
