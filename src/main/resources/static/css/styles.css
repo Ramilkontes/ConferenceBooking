@@ -89,9 +89,17 @@
     color: #fff;
 }
 
-* {box-sizing: border-box;}
-ul {list-style-type: none;}
-body {font-family: Verdana, sans-serif;}
+* {
+    box-sizing: border-box;
+}
+
+ul {
+    list-style-type: none;
+}
+
+body {
+    font-family: Verdana, sans-serif;
+}
 
 .month {
     padding: 70px 25px;
@@ -147,7 +155,7 @@ body {font-family: Verdana, sans-serif;}
     width: 13.6%;
     text-align: center;
     margin-bottom: 5px;
-    font-size:12px;
+    font-size: 12px;
     color: #777;
 }
 
@@ -158,15 +166,78 @@ body {font-family: Verdana, sans-serif;}
 }
 
 /* Add media queries for smaller screens */
-@media screen and (max-width:720px) {
-    .weekdays li, .days li {width: 13.1%;}
+@media screen and (max-width: 720px) {
+    .weekdays li, .days li {
+        width: 13.1%;
+    }
 }
 
 @media screen and (max-width: 420px) {
-    .weekdays li, .days li {width: 12.5%;}
-    .days li .active {padding: 2px;}
+    .weekdays li, .days li {
+        width: 12.5%;
+    }
+
+    .days li .active {
+        padding: 2px;
+    }
 }
 
 @media screen and (max-width: 290px) {
-    .weekdays li, .days li {width: 12.2%;}
+    .weekdays li, .days li {
+        width: 12.2%;
+    }
+}
+
+.md-tooltip .mbsc-popup-content {
+    padding: 0;
+}
+
+.md-tooltip {
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.md-tooltip-header {
+    padding: 12px 16px;
+    color: #eee;
+}
+
+.md-tooltip-info {
+    padding: 16px 16px 60px 16px;
+    position: relative;
+    line-height: 32px;
+}
+
+.md-tooltip-time,
+.md-tooltip-status-button {
+    float: right;
+}
+
+.md-tooltip-title {
+    margin-bottom: 15px;
+}
+
+.md-tooltip-text {
+    font-weight: 300;
+}
+
+.md-tooltip-info .mbsc-button {
+    font-size: 14px;
+    margin: 0;
+}
+
+.md-tooltip-info .mbsc-button.mbsc-material {
+    font-size: 12px;
+}
+
+.md-tooltip-view-button {
+    position: absolute;
+    bottom: 16px;
+    left: 16px;
+}
+
+.md-tooltip-delete-button {
+    position: absolute;
+    bottom: 16px;
+    right: 16px;
 }

@@ -1,5 +1,6 @@
 <#import "parts/common.ftl" as c>
 <#import "parts/calendar.ftl" as cal>
+<#import "parts/newCalendar.ftl" as nCal>
 <@c.page>
 
 <#if eventIsExist??>
@@ -11,7 +12,7 @@
 </div>
 </#if>
 
-<@cal.calendar />
+<@nCal.calendarPage />
 
 <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false"
    aria-controls="collapseExample">

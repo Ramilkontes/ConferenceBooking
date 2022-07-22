@@ -5,8 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c6e66d34-137b-44e8-979e-756b0cee06aa" name="Default Changelist" comment="fixed version 2.0">
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jpa-buddy.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/conference-bookingDB.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/conferencebooking/configs/MvcConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/conferencebooking/configs/MvcConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/conferencebooking/configs/security/config/WebSecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/conferencebooking/configs/security/config/WebSecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/css/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/meet-room.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/meet-room.ftl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/parts/calendar.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/parts/calendar.ftl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/parts/common.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/parts/common.ftl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/parts/inside.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/parts/inside.ftl" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,18 +28,20 @@
       <list>
         <option value="Enum" />
         <option value="Interface" />
-        <option value="HTML File" />
         <option value="Class" />
+        <option value="JavaScript File" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="version1" />
+        <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="HARD" />
   </component>
   <component name="GitSEFilterConfiguration">
     <file-type-list>
@@ -38,6 +50,21 @@
       <filtered-out-file-type name="TAG" />
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
+  </component>
+  <component name="JpbToolWindowState">
+    <option name="myId2FirstActivated">
+      <map>
+        <entry key="com.haulmont.jpb.jpaStructure" value="true" />
+      </map>
+    </option>
+    <option name="myId2Visible">
+      <map>
+        <entry key="com.haulmont.jpb.jpaStructure" value="false" />
+      </map>
+    </option>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
   </component>
   <component name="MavenRunner">
     <option name="skipTests" value="true" />
@@ -48,23 +75,39 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="DefaultHtmlFileTemplate" value="HTML File" />
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="D:/Users/Арти/IdeaProjects/income-distributor" />
-    <property name="project.structure.last.edited" value="Modules" />
-    <property name="project.structure.proportion" value="0.15" />
-    <property name="project.structure.side.proportion" value="0.2" />
-  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Users/dev/IdeaProjects/ConferenceBooking/conference-bookingDB.sql",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.general",
+    "spring.configuration.checksum": "a280397efb10aed86ee9c27f7a7e3b7c"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "postgresql"
+    ]
+  }
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="com.local.conferencebooking.services" />
       <recent name="com.local.conferencebooking.repositories" />
       <recent name="com.local.conferencebooking.models" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\dev\IdeaProjects\ConferenceBooking\src\main\resources" />
+      <recent name="C:\Users\dev\IdeaProjects\ConferenceBooking\src\main\resources\static\css" />
+      <recent name="C:\Users\dev\IdeaProjects\ConferenceBooking\src\main\resources\templates\js" />
+    </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.ConferenceBooking">
     <configuration name="ConferenceBooking" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.local.conferencebooking.ConferenceBooking" />
       <module name="ConferenceBooking" />
@@ -78,8 +121,16 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="ConferenceBooking" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="ConferenceBooking" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.local.conferencebooking.ConferenceBooking" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.ConferenceBooking" />
         <item itemvalue="Application.ConferenceBooking" />
         <item itemvalue="Application.ConferenceBooking" />
         <item itemvalue="Application.ConferenceBooking" />
@@ -95,6 +146,9 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1650269801229</updated>
+      <workItem from="1658396644701" duration="12075000" />
+      <workItem from="1658415848153" duration="1157000" />
+      <workItem from="1658470512192" duration="22995000" />
     </task>
     <task id="LOCAL-00001" summary="Created entity">
       <created>1650280661004</created>
@@ -232,6 +286,9 @@
     <option name="localTasksCounter" value="20" />
     <servers />
   </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
@@ -242,7 +299,6 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Created entity" />
@@ -267,15 +323,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="fixed version 2.0" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/local/conferencebooking/services/MeetRoomServiceImpl.java</url>
-          <line>47</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
         <watch expression="week" language="JAVA" />
